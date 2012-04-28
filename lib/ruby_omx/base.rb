@@ -4,14 +4,13 @@ module RubyOmx
 	class Base
   	attr_accessor :connection
 
-    def self.debug; @@debug ||= false end
-    def self.debug=(bool); @@debug = bool end
+    #def self.debug; @@debug ||= false end
+    #def self.debug=(bool); @@debug = bool end
       
     def initialize(options ={})
       @http_biz_id = options['http_biz_id']
       @udi_auth_token = options['udi_auth_token']
-      raise "Must supply udi auth token" unless @udi_auth_token
-      raise "Must supply http biz ID" unless @http_biz_id
+      raise RubyOmx::MissingAccessKey.new(['udi auth token', 'http biz id']) unless @udi_auth_token && @http_biz_id
       @connection = RubyOmx::Connection.connect(options)
     end
       
@@ -20,14 +19,14 @@ module RubyOmx
       @connection
     end
 
-    def connected?
-      !@connection.nil?
-    end
+    #def connected?
+    #  !@connection.nil?
+    #end
 
-    def disconnect
-      @connection.http.finish if @connection.persistent?
-      @connection = nil
-    end
+    #def disconnect
+    #  @connection.http.finish if @connection.persistent?
+    #  @connection = nil
+    #end
       
     # Wraps the current connection's request method and picks the appropriate response class to wrap the response in.
     # If the response is an error, it will raise that error as an exception. All such exceptions can be caught by rescuing

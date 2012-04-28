@@ -1,3 +1,4 @@
+# encoding: utf-8
 if RUBY_VERSION.match("1.9")
   require 'simplecov'
   SimpleCov.start do
@@ -11,9 +12,19 @@ require 'yaml'
 require 'mocha'
 require File.join(File.dirname(__FILE__), '..', 'lib', 'ruby_omx')
 
-def xml_for(name, code)
+include RubyOmx
+
+def xml_raw(name)
   file = File.open(Pathname.new(File.dirname(__FILE__)).expand_path.dirname.join("examples/xml/#{name}.xml"),'rb')
-  mock_response(code, {:content_type=>'text/xml', :body=>file.read})
+  file.read
+end
+
+def xml_for(name, code)
+  mock_response(code, {:content_type=>'text/xml', :body=>xml_raw(name)})
+end
+
+def xml_for_raw(xml, code)
+  mock_response(code, {:content_type=>'text/xml', :body=>xml})
 end
 
 def mock_response(code, options={})
@@ -25,3 +36,4 @@ def mock_response(code, options={})
   response.content_type = content_type
   return response
 end
+

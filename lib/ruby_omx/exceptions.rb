@@ -1,6 +1,6 @@
 module RubyOmx
     
-  # Abstract super class of all Amazon::MWS exceptions
+  # Abstract super class of all RubyOmx exceptions
   class RubyOmxException < StandardError
   end
     
@@ -8,14 +8,14 @@ module RubyOmx
   class InvalidOption < RubyOmxException
   end
     
-  class InvalidMessageType < RubyOmxException
-  end
+  #class InvalidMessageType < RubyOmxException
+  #end
     
-  class InvalidReportType < RubyOmxException
-  end
+  #class InvalidReportType < RubyOmxException
+  #end
     
-  class InvalidSchedule < RubyOmxException
-  end
+  #class InvalidSchedule < RubyOmxException
+  #end
     
   class MissingConnectionOptions < RubyOmxException
   end
@@ -66,7 +66,7 @@ module RubyOmx
     end
   end
     
-  # Raised if either the access key id or secret access key arguments are missing when establishing a connection.
+  # Raised if the access key arguments are missing when establishing a connection.
   class MissingAccessKey < InvalidOption
     def initialize(missing_keys)
       key_list = missing_keys.map {|key| key.to_s}.join(' and the ')
@@ -77,7 +77,7 @@ module RubyOmx
   # Raised if a request is attempted before any connections have been established.
   class NoConnectionEstablished < RubyOmxException
     def initialize
-      super("\nPlease use Amazon::MWS::Base.establish_connection! before making API calls.")
+      super("\nPlease use RubyOmx::Base.establish_connection! before making API calls.")
     end
   end
         

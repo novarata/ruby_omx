@@ -6,10 +6,10 @@ module RubyOmx
 			required_fields = [
 				params[:item_code]
 			]
-			raise MissingOrderOptions if required_fields.any? {|option| option.nil?}
+			raise MissingItemOptions if required_fields.any? {|option| option.nil?}
 			item_code = params[:item_code]
-			raw_xml = params[:raw_xml] ||= 0
-					
+			raw_xml = params[:raw_xml] ||= false
+
 			doc = Nokogiri::XML::Document.new
 			root_tag = RubyOmx.add_child_helper(doc,'ItemInformationRequest','version','1.00',nil)
 			udi_parameter = RubyOmx.add_child_helper(root_tag,'UDIParameter',nil,nil,nil)
@@ -17,22 +17,22 @@ module RubyOmx
 			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','ItemCode',item_code)
 			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','OutputSubItemAttributes','True')
       response = post(doc.to_xml)
-      if raw_xml==1
+      if raw_xml==true || raw_xml==1
       	return response
       else
-      	ItemInfoResponse.format(response)
+      	ItemInformationResponse.format(response)
       end
     
     end
 
 		#CustomItemAttributeInformationRequest (CIAIR200)	This request type lists all the custom item attributes names and values for a given item code or list of item codes, in one or all custom item attribute groups.
-		def get_custom_item_info(params ={})
+		def get_custom_item_attribute_info(params ={})
 			required_fields = [
 				params[:item_code]
 			]
-			raise MissingOrderOptions if required_fields.any? {|option| option.nil?}
+			raise MissingItemOptions if required_fields.any? {|option| option.nil?}
 			item_code = params[:item_code]
-			raw_xml = params[:raw_xml] ||= 0
+			raw_xml = params[:raw_xml] ||= false
 		
 			doc = Nokogiri::XML::Document.new
 			root_tag = RubyOmx.add_child_helper(doc,'CustomItemAttributeInformationRequest','version','2.00',nil)
@@ -41,10 +41,10 @@ module RubyOmx
 			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','ItemCode',item_code)
 			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','AttributeGroupID','All')
       response = post(doc.to_xml)
-      if raw_xml==1
+      if raw_xml==true || raw_xml==1
       	return response
       else
-      	ItemInfoResponse.format(response)
+      	CustomItemAttributeInformationResponse.format(response)
       end
 		end
 		

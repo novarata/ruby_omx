@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomItemAttributeInformationResponse>
+	<Items>
+		<Item itemCode="10100" active="True">
+			<Attribute attributeID="1" name="Keycode"/>
+			<Attribute attributeID="2" name="Texture"/>
+			<Attribute attributeID="3" name="Retail"/>
+			<Attribute attributeID="9" name="BT Min"/>
+			<Attribute attributeID="10" name="BT Max"/>
+			<Attribute attributeID="11" name="BT Fee %"/>
+			<Attribute attributeID="12" name="rt"/>
+			<Attribute attributeID="13" name="ty"/>
+			<Attribute attributeID="14" name="yu"/>
+			<Attribute attributeID="15" name="ui"/>
+			<Attribute attributeID="16" name="io"/>
+			<Attribute attributeID="17" name="io"/>
+			<Attribute attributeID="18" name="as"/>
+			<Attribute attributeID="19" name="sd"/>
+			<Attribute attributeID="20" name="df"/>
+			<Attribute attributeID="21" name="fg"/>
+			<Attribute attributeID="22" name="gh"/>
+			<Attribute attributeID="23" name="hj"/>
+			<Attribute attributeID="24" name="gh"/>
+			<Attribute attributeID="25" name="cv"/>
+		</Item>
+	</Items>
+	<Success>1</Success>
+</CustomItemAttributeInformationResponse>

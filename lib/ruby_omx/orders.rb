@@ -1,6 +1,20 @@
 module RubyOmx
   module Orders
+    
+    def build_udoa_request(params)
+		  UDOARequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+		end
 		
+		def send_udoa_request(params)
+		  request = build_udoa_request(params)
+      response = post(request.to_xml)
+      if request.raw_xml==true || request.raw_xml==1
+      	return response
+      end
+      UDOAResponse.format(response)		  
+		end
+
+=begin		
 		#UniversalDirectOrderAppending (UDOA200)	This request type is used to create orders in the application.
 		def append_order(params ={})
 			
@@ -15,43 +29,68 @@ module RubyOmx
 				params[:method_code],
 				params[:total_amount]
 			]
-			#raise MissingOrderOptions if required_fields.any? {|option| option.nil?}			        
+			raise MissingOrderOptions if required_fields.any? {|option| option.nil?}			        
 			
-			raw_xml = params[:raw_xml] ||= 0
+			raw_xml = params[:raw_xml] ||= false
 
 			doc = Nokogiri::XML::Document.new
 			root_tag = RubyOmx.add_child_helper(doc,'UDOARequest','version','2.00',nil)
 			
 			udi_parameter = RubyOmx.add_child_helper(root_tag,'UDIParameter',nil,nil,nil)
-				RubyOmx.add_child_helper(udi_parameter,'Parameter','key','HTTPBizID',@http_biz_id)
-				RubyOmx.add_child_helper(udi_parameter,'Parameter','key','UDIAuthToken',@udi_auth_token)
-				RubyOmx.add_child_helper(udi_parameter,'Parameter','key','QueueFlag',params[:queue_flag] ||= 'False')		# Determines whether any orders with errors will be stored in the OrderMotion "Outside Order Queue",  to be corrected by an OrderMotion user before resubmission. If set to "True", almost all orders will be   accepted by OrderMotion, but additional order information will only be returned in the response if the order   is successfully placed. Otherwise, any order with any error (eg invalid ZIP code) will be rejected.
-				RubyOmx.add_child_helper(udi_parameter,'Parameter','key','Keycode',params[:keycode])
-				RubyOmx.add_child_helper(udi_parameter,'Parameter','key','VerifyFlag',params[:verify_flag] ||= 'True')		# Determines whether a successful order should be saved, or only verified/calculated. When set to "True", OrderMotion will behave as if the order was placed, but not return an Order Number in the response.
-				RubyOmx.add_child_helper(udi_parameter,'Parameter','key','Vendor',params[:vendor] ||= nil)
+			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','HTTPBizID',@http_biz_id)
+			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','UDIAuthToken',@udi_auth_token)
+			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','QueueFlag',params[:queue_flag] ||= 'False')		# Determines whether any orders with errors will be stored in the OrderMotion "Outside Order Queue",  to be corrected by an OrderMotion user before resubmission. If set to "True", almost all orders will be   accepted by OrderMotion, but additional order information will only be returned in the response if the order   is successfully placed. Otherwise, any order with any error (eg invalid ZIP code) will be rejected.
+			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','Keycode',params[:keycode])
+			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','VerifyFlag',params[:verify_flag] ||= 'True')		# Determines whether a successful order should be saved, or only verified/calculated. When set to "True", OrderMotion will behave as if the order was placed, but not return an Order Number in the response.
+			RubyOmx.add_child_helper(udi_parameter,'Parameter','key','Vendor',params[:vendor] ||= nil)
 			
 			header = RubyOmx.add_child_helper(root_tag,'Header',nil,nil,nil)
-				RubyOmx.add_child_helper(header,'StoreCode',nil,nil,params[:store_code] ||= '')
-				RubyOmx.add_child_helper(header,'OrderID',nil,nil,params[:order_id])
-				RubyOmx.add_child_helper(header,'OrderDate',nil,nil,params[:order_date]) # Dates are almost the same as the W3C Schema "date" type, but with a space instead of the "T" separating the date from the time.
-				RubyOmx.add_child_helper(header,'OriginType',nil,nil,params[:origin_type] ||= '2') # 2 = phone order, 3 = internet order
+			RubyOmx.add_child_helper(header,'StoreCode',nil,nil,params[:store_code] ||= '')
+			RubyOmx.add_child_helper(header,'OrderID',nil,nil,params[:order_id])
+			RubyOmx.add_child_helper(header,'OrderDate',nil,nil,params[:order_date]) # Dates are almost the same as the W3C Schema "date" type, but with a space instead of the "T" separating the date from the time.
+			RubyOmx.add_child_helper(header,'OriginType',nil,nil,params[:origin_type] ||= '2') # 2 = phone order, 3 = internet order
 			
 			customer = RubyOmx.add_child_helper(root_tag,'Customer',nil,nil,nil)			
-				address = RubyOmx.add_child_helper(customer,'Address','type','BillTo',nil)
-					RubyOmx.add_child_helper(address,'TitleCode',nil,nil,params[:title_code] ||= '0')
-					RubyOmx.add_child_helper(address,'Firstname',nil,nil,params[:first_name] ||= 'Test')
-					RubyOmx.add_child_helper(address,'Lastname',nil,nil,params[:last_name] ||= 'Test')
-					RubyOmx.add_child_helper(address,'Address1',nil,nil,params[:address1] ||= nil)
-					RubyOmx.add_child_helper(address,'Address2',nil,nil,params[:address2] ||= nil)
-					RubyOmx.add_child_helper(address,'City',nil,nil,params[:city] ||=nil)
-					RubyOmx.add_child_helper(address,'State',nil,nil,params[:state] ||= nil)
-					RubyOmx.add_child_helper(address,'ZIP',nil,nil,params[:zip] ||=nil)
-					RubyOmx.add_child_helper(address,'TLD',nil,nil,params[:tld] ||=nil)
-					RubyOmx.add_child_helper(address,'PhoneNumber',nil,nil,params[:phone] ||= nil)
-					RubyOmx.add_child_helper(address,'Email',nil,nil,params[:email] ||= nil)
+			address = RubyOmx.add_child_helper(customer,'Address','type','BillTo',nil)
+			RubyOmx.add_child_helper(address,'TitleCode',nil,nil,params[:title_code] ||= '0')
+			RubyOmx.add_child_helper(address,'Firstname',nil,nil,params[:first_name] ||= 'Test')
+			RubyOmx.add_child_helper(address,'Lastname',nil,nil,params[:last_name] ||= 'Test')
+			RubyOmx.add_child_helper(address,'Address1',nil,nil,params[:address1] ||= nil)
+			RubyOmx.add_child_helper(address,'Address2',nil,nil,params[:address2] ||= nil)
+			RubyOmx.add_child_helper(address,'City',nil,nil,params[:city] ||=nil)
+			RubyOmx.add_child_helper(address,'State',nil,nil,params[:state] ||= nil)
+			RubyOmx.add_child_helper(address,'ZIP',nil,nil,params[:zip] ||=nil)
+			RubyOmx.add_child_helper(address,'TLD',nil,nil,params[:tld] ||=nil)
+			RubyOmx.add_child_helper(address,'PhoneNumber',nil,nil,params[:phone] ||= nil)
+			RubyOmx.add_child_helper(address,'Email',nil,nil,params[:email] ||= nil)
 						
 			shipping_info = RubyOmx.add_child_helper(root_tag,'ShippingInformation',nil,nil,nil)
-				RubyOmx.add_child_helper(shipping_info,'MethodCode',nil,nil,params[:method_code])
+			
+  		# Shipping Methods (numeric inputs to MethodCode)
+  		# 0	UPS Ground (1-4 Days Transit Time)	 	0.00	
+  		# 2	Drop-Ship Montague	1	40.00	
+  		# 1	UPS Free UPS Ground Shipping (US ONLY)	0	0.00	
+  		# 3	UPS Ground	003	0.00	
+  		# 4	UPS 2nd Day Air	002	0.00	
+  		# 5	UPS Next Day Air	001	0.00	
+  		# 7	UPS 3 Day Select	004	0.00	
+  		# 12	UPS Worldwide Expedited	008	0.00	
+  		# 13	UPS Worldwide Express	009	0.00	
+  		# 14	UPS Worldwide Express Plus	010	0.00	
+  		# 6	International Flat Rate via USPS Express	2	35.00
+  		# 8	USPS Express	 	29.99	
+  		# 9	USPS Priority	 	6.99	
+  		# 10	Int. Express USPS	 	0.00	
+  		# 11	Int. Priority USPS	 	0.00	
+  		# 15	USPS Domestic Priority Flat Rate	 	6.99	
+  		# 16	USPS Domestic Express Flat Rate	 	34.99	
+  		# 17	USPS International Global Priority	 	29.99	
+  		# 18	USPS International Global Express	 	39.99	
+  		# 19	Next Day Air (USA Only)	 	0.00	
+  		# 20	2nd Day Air (USA Only)	 	0.00	
+  		# 21	Priority Mail (Free $74.99 and above), 3-6 days 0.00			
+			RubyOmx.add_child_helper(shipping_info,'MethodCode',nil,nil,params[:method_code])
+			
 			#	address = RubyOmx.add_child_helper(shipping_info,'Address','type','ShipTo',nil)
 			#		RubyOmx.add_child_helper(address,'TitleCode',nil,nil,'0')
 			#		RubyOmx.add_child_helper(address,'Firstname',nil,nil,'Test') #TODO capture the first and last name for billing, not just shipping
@@ -64,11 +103,11 @@ module RubyOmx
 			#		RubyOmx.add_child_helper(address,'TLD',nil,nil,'US')
 				#	RubyOmx.add_child_helper(address,'PhoneNumber',nil,nil,nil)
 				#	RubyOmx.add_child_helper(address,'Email',nil,nil,nil)
-				RubyOmx.add_child_helper(shipping_info,'ShippingAmount',nil,nil,params[:shipping_amount] ||= '0.00')		
+			RubyOmx.add_child_helper(shipping_info,'ShippingAmount',nil,nil,params[:shipping_amount] ||= '0.00')		
 				#RubyOmx.add_child_helper(shipping_info,'HandlingAmount',nil,nil,'0')		
 				#RubyOmx.add_child_helper(shipping_info,'SpecialInstructions',nil,nil,'0')
-				RubyOmx.add_child_helper(shipping_info,'GiftWrapping',nil,nil,params[:gift_wrapping] ||= 'False')								
-				RubyOmx.add_child_helper(shipping_info,'GiftMessage',nil,nil,params[:gift_message] ||= nil)				
+			RubyOmx.add_child_helper(shipping_info,'GiftWrapping',nil,nil,params[:gift_wrapping] ||= 'False')								
+			RubyOmx.add_child_helper(shipping_info,'GiftMessage',nil,nil,params[:gift_message] ||= nil)				
 							
 			payment_type = RubyOmx.add_child_helper(root_tag,'Payment','type',params[:payment_type] ||= '6',nil) #6 for open invoice
 			#	RubyOmx.add_child_helper(payment_type,'CardNumber',nil,nil,'4111111111111111')
@@ -81,36 +120,34 @@ module RubyOmx
 				
 			order_detail = RubyOmx.add_child_helper(root_tag,'OrderDetail',nil,nil,nil)
 				
-				i=1
-				params[:line_items].each do |item|
-					raise MissingItemOptions if item[:item_code].nil?
-					line_item = RubyOmx.add_child_helper(order_detail,'LineItem','lineNumber',i.to_s,nil) 	
-						RubyOmx.add_child_helper(line_item,'ItemCode',nil,nil,item[:item_code])
-						RubyOmx.add_child_helper(line_item,'Quantity',nil,nil,item[:quantity] ||= '1')
-						if !item[:unit_price].nil?
-							RubyOmx.add_child_helper(line_item,'UnitPrice',nil,nil,item[:unit_price])
-						end
-						#RubyOmx.add_child_helper(line_item,'StandingOrder','configurationID','5',nil)
-						#customization = RubyOmx.add_child_helper(line_item,'ItemCustomizationData',nil,nil,nil)
-						#field = RubyOmx.add_child_helper(customization,'CustomizationField','fieldID','127',nil)
-						#RubyOmx.add_child_helper(field,'Value',nil,nil,'demoText')
-						i+=1
-				end
+			i=1
+			params[:line_items].each do |item|
+				raise MissingItemOptions if item[:item_code].nil?
+				line_item = RubyOmx.add_child_helper(order_detail,'LineItem','lineNumber',i.to_s,nil) 	
+					RubyOmx.add_child_helper(line_item,'ItemCode',nil,nil,item[:item_code])
+					RubyOmx.add_child_helper(line_item,'Quantity',nil,nil,item[:quantity] ||= '1')
+					if !item[:unit_price].nil?
+						RubyOmx.add_child_helper(line_item,'UnitPrice',nil,nil,item[:unit_price])
+					end
+					#RubyOmx.add_child_helper(line_item,'StandingOrder','configurationID','5',nil)
+					#customization = RubyOmx.add_child_helper(line_item,'ItemCustomizationData',nil,nil,nil)
+					#field = RubyOmx.add_child_helper(customization,'CustomizationField','fieldID','127',nil)
+					#RubyOmx.add_child_helper(field,'Value',nil,nil,'demoText')
+					i+=1
+			end
 			
 			check = RubyOmx.add_child_helper(root_tag,'Check',nil,nil,nil)
 			RubyOmx.add_child_helper(check,'TotalAmount',nil,nil,params[:total_amount])
 								    
       response = post(doc.to_xml)
-      if raw_xml==1
+      if raw_xml==true || raw_xml==1
       	return response
       else
-       	AppendOrderResponse.format(response)
+       	UDOAResponse.format(response)
       end
     end
     
     #OrderDetailUpdateRequest (ODUR100)	This request type enables you to update certain data for orders.
-    
-    
 		#CancellationHistoryRequest (CHR100)	This request type lists all the cancellations that have occurred between two dates.
 		#InvoiceProcessRequest (IPR100)	This command takes an order number, and runs the invoicing and credit memo processes against the order if there are any order lines that can be subject to an invoice or credit memo, or if there are returns on the order.
 		#OrderCancellationRequest (OCR100)	This request type enables you to cancel some or all the line items in an order.		
@@ -118,5 +155,6 @@ module RubyOmx
 		#OrderSecondaryStatusUpdateRequest (OSSUR100)	This request type enables you to set the secondary status of the OrderLines.
 		#OrderUpdateRequest (OUR200)	This request type enables you to change the Payment Plan of an order, as well as the basis date for payment plan calculation, and also update the "Alt ID 2" (a.k.a "Reference") field of the order.
 		#OrderWaitDateUpdateRequest (OWDUR100)	This request type enables you to change the Wait Date of an existing order.  
+=end
   end
 end

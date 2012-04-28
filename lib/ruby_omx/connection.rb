@@ -1,11 +1,9 @@
 module RubyOmx
      
   class Connection
-    # Static/Class methods
-    class << self
-      def connect(options = {})
-        new(options)
-      end
+
+    def self.connect(options = {})
+      new(options)
     end
       
     def initialize(params = {})
@@ -13,7 +11,6 @@ module RubyOmx
       # These values are essential to establishing a connection
       @udi_auth_token   = params['udi_auth_token']
       @server           = params['server'] || RubyOmx::DEFAULT_HOST + "?UDIAuthToken=#{@udi_auth_token}"
-      @persistent       = params['persistent'] || false
       @http_biz_id 			= params['http_biz_id']
 			@path = URI.parse(@server).request_uri
         

@@ -1,6 +1,6 @@
 module RubyOmx
     
-    class AppendOrderResponse < Response
+    class UDOAResponse < Response
       xml_name "UDOAResponse"
 
 		 	xml_reader :success, :as => Integer

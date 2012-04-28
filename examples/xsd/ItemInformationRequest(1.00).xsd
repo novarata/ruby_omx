@@ -3,10 +3,10 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
 	<xs:element name="Parameter">
 		<xs:annotation>
-			<xs:documentation>
-				HTTPBizID (required) - This identifies the OrderMotion account, and is normally 255 characters in length. The HTTPBizID for the OrderMotion Test Drive account is "TestHTTPBizID0123456789".
-				ItemCode (required)
-			</xs:documentation>
+			<xs:documentation>HTTPBizID (required) - This identifies the OrderMotion account, and is normally 255 characters in length. The HTTPBizID for the OrderMotion Test Drive account is "TestHTTPBizID0123456789". 
+
+
+ItemCode (required)</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:simpleContent>
@@ -19,8 +19,6 @@
 								<xs:enumeration value="Keycode"/>
 								<xs:enumeration value="RetailStoreCode"/>
 								<xs:enumeration value="UPCCode"/>
-								<xs:enumeration value="StandingOrderConfigurationDetail"/>
-								<xs:enumeration value="OutputSubItemAttributes"/>
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:attribute>
@@ -46,15 +44,7 @@ Keycode
 Optional, lets your filter by Keycode.  If provided, the item price will be keycode specific price. 
 
 RetailStoreCode
-Optional, lets you filter by store code.
-
-StandingOrderConfigurationDetail
-Optional, boolean that lets you get more details about the standing order configurations of this item
-
-OutputSubItemAttributes
-Optional, boolean that lets you get more details about the sub-item attributes of this item, if the item is a parent item.
-
-</xs:documentation>
+Optional, lets you filter by store code.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>

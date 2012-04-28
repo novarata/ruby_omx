@@ -3,6 +3,12 @@ module RubyOmx
   class Response
     include ROXML
     xml_convention :camelcase
+    
+    def initialize(object_attribute_hash=nil)
+      if !object_attribute_hash.nil?
+        object_attribute_hash.map { |(k, v)| send("#{k}=", v) }
+      end
+     end
 
     # This is the factoryish method that is called!, not new
     def self.format(response)
@@ -25,6 +31,18 @@ module RubyOmx
     def accessors
       roxml_references.map {|r| r.accessor}
     end
+
+    # render a ROXML object as a normal hash, eliminating the @ and some unneeded admin fields
+  	def as_hash
+  		obj_hash = {}
+  		self.instance_variables.each do |v|
+  			m = v.to_s.sub('@','')
+  			if m != 'roxml_references' && m!= 'promotion_ids'
+  				obj_hash[m.to_sym] = self.instance_variable_get(v)
+  			end
+  		end
+  		obj_hash
+  	end
 
   end
 end
