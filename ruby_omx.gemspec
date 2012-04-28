@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.name        = "ruby_omx"
   s.version     = RubyOmx::VERSION
   s.authors     = ["A. Edward Wible"]
-  s.email       = ["aewiblee@gmail.com"]
+  s.email       = ["aewible@gmail.com"]
   s.homepage    = "http://github.com/aew/ruby_omx"
   s.summary     = "Ruby wrapper for OrderMotion (OMX)"
   s.description = "Ruby wrapper for OrderMotion (OMX) developer API"
