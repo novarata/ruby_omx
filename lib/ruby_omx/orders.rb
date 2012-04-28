@@ -7,7 +7,7 @@ module RubyOmx
 		
 		def send_udoa_request(params)
 		  request = build_udoa_request(params)
-      response = post(request.to_xml)
+      response = post(request.to_xml.to_s)
       if request.raw_xml==true || request.raw_xml==1
       	return response
       end
