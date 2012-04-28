@@ -13,6 +13,10 @@ module RubyOmx
       end
       UDOAResponse.format(response)		  
 		end
+		
+		def append_order(params={})
+		  send_udoa_request(params)
+		end
 
 =begin		
 		#UniversalDirectOrderAppending (UDOA200)	This request type is used to create orders in the application.

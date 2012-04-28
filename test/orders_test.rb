@@ -177,5 +177,10 @@ class OrdersTest < MiniTest::Unit::TestCase
 
 		response = @connection.send_udoa_request(order_data.merge({:raw_xml => true}))
 		assert_kind_of Net::HTTPOK, response
+		
+		# old alias should still work
+		response = @connection.append_order(order_data)		
+		assert_kind_of UDOAResponse, response
+		assert_equal 'OMX-ofyccytnacrtnedlldmyed', response.OMX
   end
 end
