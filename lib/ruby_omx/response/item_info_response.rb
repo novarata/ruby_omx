@@ -1,4 +1,11 @@
 module RubyOmx
+
+  class ItemInfoCustomItemAttribute < Response
+    xml_name "Attribute"
+    xml_reader :attribute_id, :from => '@attributeID'
+    xml_reader :name, :from => '@name'
+    xml_reader :value, :from => :content
+  end
     
   class ItemInformationResponse < Response
     xml_name "ItemInformationResponse"
@@ -24,7 +31,7 @@ module RubyOmx
 	 	xml_reader :price_addl_sh, :from => 'AdditionalSH', :in => 'Item/PriceData/Price', :as => Float
 	 	xml_reader :price_bonus, :from => 'Bonus', :in => 'Item/PriceData/Price', :as => Float
 	 	
-	 	xml_reader :custom_attributes, :as => [RubyOmx::CustomItemAttribute], :in => 'Item/CustomItemAttribute'
+	 	xml_reader :custom_attributes, :as => [ItemInfoCustomItemAttribute], :in => 'Item/CustomItemAttribute'
   end
     
 end
