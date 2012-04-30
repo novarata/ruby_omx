@@ -24,7 +24,7 @@ module RubyOmx
 	 	xml_reader :price_addl_sh, :from => 'AdditionalSH', :in => 'Item/PriceData/Price', :as => Float
 	 	xml_reader :price_bonus, :from => 'Bonus', :in => 'Item/PriceData/Price', :as => Float
 	 	
-	 	xml_reader :custom_attributes, :as => [CustomItemAttribute], :in => 'Item/CustomItemAttribute'
+	 	xml_reader :custom_attributes, :as => [RubyOmx::CustomItemAttribute], :in => 'Item/CustomItemAttribute'
   end
     
 end
