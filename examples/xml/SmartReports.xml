@@ -1,0 +1,56 @@
+<SmartReportResultXml>
+	
+	<DeliveryInformation>
+		<Delivery type="email"><EmailAddress>support@ordermotion.com</EmailAddress></Delivery>
+	</DeliveryInformation>
+
+	<Header>
+		<Field fieldID="1">Order Number</Field>
+		<Field fieldID="2">Alt ID</Field>
+		<Field fieldID="3">Product SKU</Field>
+		<Field fieldID="4">Product Name</Field>
+		<Field fieldID="5">Quantity</Field>
+		<Field fieldID="6">Price</Field>
+		<Field fieldID="7">Customer Number</Field>
+		<Field fieldID="8">Customer Name</Field>
+		<Field fieldID="9" />
+		<Field fieldID="10">Shipping Type</Field>
+		<Field fieldID="11">Supplier Id</Field>
+		<Field fieldID="12">Supplier Name</Field>
+	</Header>
+
+	<Detail>
+
+		<Row>
+			<Field fieldID="1">12432343</Field>
+			<Field fieldID="2">104-1544455530-5234346</Field>
+			<Field fieldID="3">0432-70J</Field>
+			<Field fieldID="4">Grey Glasses</Field>
+			<Field fieldID="5">1</Field>
+			<Field fieldID="6">575.0</Field>
+			<Field fieldID="7">23252343</Field>
+			<Field fieldID="8">Chris Smith</Field>
+			<Field fieldID="9">blah@test.com</Field>
+			<Field fieldID="10">USPS Priority</Field>
+			<Field fieldID="11">1003</Field>
+			<Field fieldID="12">NewBrand2</Field>
+		</Row>
+
+		<Row>
+			<Field fieldID="1">17665344</Field>
+			<Field fieldID="2" />
+			<Field fieldID="3">386.BLK.2</Field>
+			<Field fieldID="4">Black Large</Field>
+			<Field fieldID="5">1</Field>
+			<Field fieldID="6">548.543</Field>
+			<Field fieldID="7">1432755</Field>
+			<Field fieldID="8">Bob Jones</Field>
+			<Field fieldID="9" />
+			<Field fieldID="10">USPS Priority</Field>
+			<Field fieldID="11">12340</Field>
+			<Field fieldID="12">NewBrand</Field>
+		</Row>
+
+	</Detail>
+
+</SmartReportResultXml>

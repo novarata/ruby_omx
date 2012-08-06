@@ -1,10 +1,4 @@
 module RubyOmx
-
-  class UDIParameter < Response
-    xml_name "Parameter"
-    xml_accessor :key, :from => '@key'
-    xml_accessor :value, :from => :content
-  end
     
   class Address < Response
     xml_name "Address"
@@ -75,7 +69,7 @@ module RubyOmx
       
     xml_name "UDOARequest"
     xml_accessor :version, :from => '@version'
-    xml_accessor :udi_parameters, :as => [UDIParameter], :in => 'UDIParameter'
+    xml_accessor :udi_parameters, :as => [RubyOmx::UDIParameter], :in => 'UDIParameter'
     xml_accessor :order_date, :in => 'Header', :as => DateTime  # Dates are almost the same as the W3C Schema "date" type, but with a space instead of the "T" separating the date from the time.
     xml_accessor :order_id, :in => 'Header', :from => 'OrderID'
     xml_accessor :origin_type, :in => 'Header'

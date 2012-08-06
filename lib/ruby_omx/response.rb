@@ -5,10 +5,8 @@ module RubyOmx
     xml_convention :camelcase
     
     def initialize(object_attribute_hash=nil)
-      if !object_attribute_hash.nil?
-        object_attribute_hash.map { |(k, v)| send("#{k}=", v) }
-      end
-     end
+      object_attribute_hash.map { |(k, v)| send("#{k}=", v) } if object_attribute_hash.present?
+   end
 
     # This is the factoryish method that is called!, not new
     def self.format(response)

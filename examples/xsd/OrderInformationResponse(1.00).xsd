@@ -1,0 +1,915 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="Address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FullAddress"></xs:element>
+				<xs:element ref="FullName" minOccurs="0"></xs:element>
+				<xs:element ref="Company"></xs:element>
+				<xs:element ref="FullAddress"></xs:element>
+				<xs:element ref="Title"></xs:element>
+				<xs:element ref="Firstname"></xs:element>
+				<xs:element ref="MidInitial"></xs:element>
+				<xs:element ref="Lastname"></xs:element>
+				<xs:element ref="Street1"></xs:element>
+				<xs:element ref="Street2"></xs:element>
+				<xs:element ref="Address1"></xs:element>
+				<xs:element ref="Address2"></xs:element>
+				<xs:element ref="SubCity"></xs:element>
+				<xs:element ref="Apartment"></xs:element>
+				<xs:element ref="Building"></xs:element>
+				<xs:element ref="County"></xs:element>
+				<xs:element ref="City"></xs:element>
+				<xs:element ref="ZIP"></xs:element>
+				<xs:element ref="TLD"></xs:element>
+				<xs:element ref="State"></xs:element>
+				<xs:element ref="Country" minOccurs="0"></xs:element>
+				<xs:element ref="Email"></xs:element>
+				<xs:element ref="FullPhone" minOccurs="0"></xs:element>
+				<xs:element ref="PhoneNumber" minOccurs="0"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="BillTo"></xs:enumeration>
+						<xs:enumeration value="ShipTo"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Address1">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Address2" type="xs:string"></xs:element>
+	<xs:element name="Apartment" type="xs:string"></xs:element>
+	<xs:element name="AttributeValue">
+		<xs:complexType>
+			<xs:attribute name="attributeID" type="xs:unsignedInt" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Balance" type="xs:decimal"></xs:element>
+	<xs:element name="BankAccountNumber" type="xs:string"></xs:element>
+	<xs:element name="BankRoutingNumber" type="xs:string"></xs:element>
+	<xs:element name="Building" type="xs:string"></xs:element>
+	<xs:element name="CarrierData" type="xs:string"></xs:element>
+	<xs:element name="Cart">
+		<xs:complexType>
+			<xs:attribute name="controlNumber" type="xs:string" use="required" fixed="''"></xs:attribute>
+			<xs:attribute name="pickSequenceNumber" type="xs:string" use="required" fixed="''"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="City">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Company" type="xs:string"></xs:element>
+	<xs:element name="Country">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="County" type="xs:string"></xs:element>
+	<xs:element name="CreditCardAuthCode" type="xs:string"></xs:element>
+	<xs:element name="CreditCardCCV" type="xs:string"></xs:element>
+	<xs:element name="CreditCardExpDate" type="xs:string"></xs:element>
+	<xs:element name="CreditCardIssueNumber" type="xs:string"></xs:element>
+	<xs:element name="CreditCardName" type="xs:string"></xs:element>
+	<xs:element name="CreditCardNumber" type="xs:string"></xs:element>
+	<xs:element name="CreditCardStartDate" type="xs:string"></xs:element>
+	<xs:element name="CreditCardType" type="xs:unsignedInt"></xs:element>
+	<xs:element name="Customer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Level"></xs:element>
+				<xs:element ref="Address"></xs:element>
+				<xs:element ref="FlagData"></xs:element>
+				<xs:element ref="CustomerStats" minOccurs="0"></xs:element>
+				<xs:element ref="DateOfBirth" minOccurs="0"></xs:element>
+				<xs:element ref="TimeOfBirth" minOccurs="0"></xs:element>
+				<xs:element ref="PlaceOfBirth" minOccurs="0"></xs:element>
+				<xs:element ref="PlaceOfBirthTLD" minOccurs="0"></xs:element>
+				<xs:element ref="PlaceOfBirthState" minOccurs="0"></xs:element>
+				<xs:element ref="PlaceOfBirthCode" minOccurs="0"></xs:element>
+				<xs:element ref="NS" minOccurs="0"></xs:element>
+				<xs:element ref="EW" minOccurs="0"></xs:element>
+				<xs:element ref="LatitudeReal" minOccurs="0"></xs:element>
+				<xs:element ref="LongitudeReal" minOccurs="0"></xs:element>
+				<xs:element ref="Longitude" minOccurs="0"></xs:element>
+				<xs:element ref="Latitude" minOccurs="0"></xs:element>
+				<xs:element ref="PlaceOfBirthCodeAF" minOccurs="0"></xs:element>
+				<xs:element ref="LongitudeAF" minOccurs="0"></xs:element>
+				<xs:element ref="LatitudeAF" minOccurs="0"></xs:element>
+				<xs:element ref="LatitudeDegreeReal" minOccurs="0"></xs:element>
+				<xs:element ref="LongitudeDegreeReal" minOccurs="0"></xs:element>
+				<xs:element ref="LatitudeTimeReal" minOccurs="0"></xs:element>
+				<xs:element ref="LongitudeTimeReal" minOccurs="0"></xs:element>
+				<xs:element ref="ZodiacSign" minOccurs="0"></xs:element>
+				<xs:element name="Field_xxx" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Customer Custom Field, the element name: Field_ follows by a number</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="number" type="xs:unsignedInt" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomerStats">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FirstOrder"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DimensionData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DimensionLabel1" minOccurs="0"></xs:element>
+				<xs:element ref="DimensionLabel2" minOccurs="0"></xs:element>
+				<xs:element ref="DimensionLabel3" minOccurs="0"></xs:element>
+				<xs:element ref="DimensionValue1"></xs:element>
+				<xs:element ref="DimensionValue2"></xs:element>
+				<xs:element ref="DimensionValue3"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Recurrence">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RecurrenceDiscountAmount"></xs:element>
+				<xs:element ref="RecurrenceDiscountPercent"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="RecurrencePatternID" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="RecurrenceCount" type="xs:unsignedInt" use="optional"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DimensionLabel1">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DimensionLabel2">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DimensionLabel3">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DimensionValue1">
+		<xs:complexType mixed="true">
+			<xs:attribute name="code" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DimensionValue2">
+		<xs:complexType mixed="true">
+			<xs:attribute name="code" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DimensionValue3">
+		<xs:complexType mixed="true">
+			<xs:attribute name="code" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="3"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Division">
+		<xs:annotation>
+			<xs:documentation>Provided if Level > 1</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="divisionID" type="xs:unsignedInt" use="required"></xs:attribute>
+			<xs:attribute name="website" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EffectiveUnitPrice" type="xs:decimal"></xs:element>
+	<xs:element name="Email" type="xs:string"></xs:element>
+	<xs:element name="File">
+		<xs:complexType>
+			<xs:attribute name="fileSubCode" type="xs:string" use="optional"></xs:attribute>
+			<xs:attribute name="fileNumber" type="xs:unsignedInt" use="optional"></xs:attribute>
+			<xs:attribute name="fileName" type="xs:string" use="optional"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FirstOrder" type="xs:boolean"></xs:element>
+	<xs:element name="Firstname">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Flag">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:boolean">
+					<xs:attribute name="name" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="BadDebtFlag"></xs:enumeration>
+								<xs:enumeration value="DoNotCallFlag"></xs:enumeration>
+								<xs:enumeration value="DoNotEmailFlag"></xs:enumeration>
+								<xs:enumeration value="DoNotMailFlag"></xs:enumeration>
+								<xs:enumeration value="DoNotRentFlag"></xs:enumeration>
+								<xs:enumeration value="NixieFlag"></xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FlagData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Flag" minOccurs="6" maxOccurs="6"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FulfillmentInstructions" type="xs:string"></xs:element>
+	<xs:element name="FullAddress" type="xs:string"></xs:element>
+	<xs:element name="FullName">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="FullPhone">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="HandlingAmount" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>blank now</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Info" type="xs:string"></xs:element>
+	<xs:element name="ItemAttributes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AttributeValue" maxOccurs="10"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemCode">
+		<xs:complexType mixed="true">
+			<xs:attribute name="parentLineItemCode" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Keycode" type="xs:string"></xs:element>
+	<xs:element name="KeycodeAdVersion" type="xs:string"></xs:element>
+	<xs:element name="KeycodeDescription">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="KeyedDate" type="OMDate"></xs:element>
+	<xs:element name="LastPaidDate" type="OMDate"></xs:element>
+	<xs:element name="Lastname">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Level" type="xs:string"></xs:element>
+	<xs:element name="LineCOGS" type="xs:decimal"></xs:element>
+	<xs:element name="LineDiscount" type="xs:decimal"></xs:element>
+	<xs:element name="LineItem">
+		<xs:annotation>
+			<xs:documentation>LineItem is provided if leve > 1</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ShipmentNumber"></xs:element>
+				<xs:element ref="LineCOGS"></xs:element>
+				<xs:element ref="UnitCOGS"></xs:element>
+				<xs:element ref="ItemCode"></xs:element>
+				<xs:element ref="WarehouseReference"></xs:element>
+				<xs:element ref="ProductTypeDescription"></xs:element>
+				<xs:element ref="ProductName"></xs:element>
+				<xs:element ref="Info"></xs:element>
+				<xs:element ref="ProductDescription" minOccurs="0"></xs:element>
+				<xs:element ref="UPCCode" minOccurs="0"></xs:element>
+				<xs:element ref="UnitOfMeasure" minOccurs="0"></xs:element>
+				<xs:element ref="PickLocation"></xs:element>
+				<xs:element ref="FulfillmentInstructions"></xs:element>
+				<xs:element ref="Quantity"></xs:element>
+				<xs:element ref="Price"></xs:element>
+				<xs:element ref="Tax"></xs:element>
+				<xs:element ref="ItemAttributes" minOccurs="0"></xs:element>
+				<xs:element ref="DimensionData" minOccurs="0"></xs:element>
+				<xs:element ref="Recurrence" minOccurs="0"></xs:element>
+				<xs:element ref="TotalPrice"></xs:element>
+				<xs:element ref="UnitPrice"></xs:element>
+				<xs:element ref="EffectiveUnitPrice"></xs:element>
+				<xs:element ref="LineStatus"></xs:element>
+				<xs:element ref="LineDiscount"></xs:element>
+				<xs:element ref="TrackingNumber" minOccurs="0"></xs:element>
+				<xs:element ref="CustomFields"></xs:element>
+				<xs:element ref="SupplierItemCode" minOccurs="0"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="lineNumber" type="xs:unsignedInt" use="required"></xs:attribute>
+			<xs:attribute name="output" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="true"></xs:enumeration>
+						<xs:enumeration value="false"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="parentLineNumber" type="xs:unsignedInt" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LineStatus">
+		<xs:complexType mixed="true">
+			<xs:attribute name="date" type="OMDate" use="required"></xs:attribute>
+			<xs:attribute name="text" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK"></xs:enumeration>
+						<xs:enumeration value="N/S"></xs:enumeration>
+						<xs:enumeration value="B/O"></xs:enumeration>
+						<xs:enumeration value="P/S"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Method">
+		<xs:complexType mixed="true">
+			<xs:attribute name="code" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fulfillmentCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="GND"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fulfillmentIndicator" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="carrierServiceCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="13"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="carrierName" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="FedEx"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MidInitial" type="xs:string"></xs:element>
+	<xs:element name="NetAmount" type="xs:decimal"></xs:element>
+	<xs:element name="OrderDate" type="OMDate"></xs:element>
+	<xs:element name="OrderDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LineItem" minOccurs="0"></xs:element>
+				<xs:element ref="OrderAdditionalInfo" minOccurs="0"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Division" minOccurs="0"></xs:element>
+				<xs:element ref="OrderID" minOccurs="0"></xs:element>
+				<xs:element ref="OriginType" minOccurs="0"></xs:element>
+				<xs:element ref="KeycodeDescription" minOccurs="0"></xs:element>
+				<xs:element ref="KeycodeAdVersion" minOccurs="0"></xs:element>
+				<xs:element ref="OverwriteKeycode" minOccurs="0"></xs:element>
+				<xs:element ref="Promotion" minOccurs="0"></xs:element>
+				<xs:element ref="TodayDay" minOccurs="0"></xs:element>
+				<xs:element ref="TodayMonth" minOccurs="0"></xs:element>
+				<xs:element ref="TodayYear" minOccurs="0"></xs:element>
+				<xs:element ref="TodayDate" minOccurs="0"></xs:element>
+				<xs:element ref="Tax" minOccurs="0"></xs:element>
+				<xs:element ref="NetAmount" minOccurs="0"></xs:element>
+				<xs:element ref="UserDescription" minOccurs="0"></xs:element>
+				<xs:element ref="PIN" minOccurs="0"></xs:element>
+				<xs:element ref="UserName" minOccurs="0"></xs:element>
+				<xs:element ref="WaitDate" minOccurs="0"></xs:element>
+				<xs:element ref="LastPaidDate" minOccurs="0"></xs:element>
+				<xs:element ref="OrderNumber"></xs:element>
+				<xs:element ref="Keycode"></xs:element>
+				<xs:element ref="KeyedDate"></xs:element>
+				<xs:element ref="TotalDiscount"></xs:element>
+				<xs:element ref="Balance"></xs:element>
+				<xs:element ref="TotalPaid"></xs:element>
+				<xs:element ref="TotalAmount"></xs:element>
+				<xs:element ref="StandingOrderNote" minOccurs="0"></xs:element>
+				<xs:element ref="StoreCode"></xs:element>
+				<xs:element ref="PaymentPlan"></xs:element>
+				<xs:element ref="CustomFields" minOccurs="0" maxOccurs="unbounded"></xs:element>
+				<xs:element ref="OrderDate"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderID" type="xs:string"></xs:element>
+	<xs:element name="OrderInformationResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrderHeader"></xs:element>
+				<xs:element ref="ShippingInformation"></xs:element>
+				<xs:element ref="OrderDetail" minOccurs="0"></xs:element>
+				<xs:element ref="CollectionInformation" minOccurs="0"></xs:element>
+				<xs:element ref="Customer"></xs:element>
+				<xs:element ref="Payment"></xs:element>
+				<xs:element ref="StockXml" minOccurs="0"></xs:element>
+				<xs:element ref="ErrorData" minOccurs="0"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderNumber" type="xs:unsignedInt"></xs:element>
+	<xs:element name="OriginType" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>
+The Origin Type of the order represents the sales channel channel - usually "3", for "Internet Order".
+
+Possible values include:
+1 - Mail order (with Batch)
+2 - Phone order
+3 - Internet order
+4 - Walk-in order
+5 - Mobile order
+6 - Mail order (without batch)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OverwriteKeycode" type="xs:string"></xs:element>
+	<xs:element name="PIN">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Payment">
+		<xs:annotation>
+			<xs:documentation>type:
+
+0: Free
+1: Credit Card
+2: Cash
+3: Check
+4: Money Order
+5: C.O.D.
+6: Open Invoice
+7: Electronic Check
+8: Other
+9: Intra Transfer
+10: Pre-Bill
+</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CreditCardType"></xs:element>
+				<xs:element ref="CreditCardName"></xs:element>
+				<xs:element ref="CreditCardNumber"></xs:element>
+				<xs:element ref="CreditCardCCV"></xs:element>
+				<xs:element ref="CreditCardExpDate"></xs:element>
+				<xs:element ref="CreditCardAuthCode"></xs:element>
+				<xs:element ref="BankRoutingNumber"></xs:element>
+				<xs:element ref="BankAccountNumber"></xs:element>
+				<xs:element ref="CreditCardStartDate"></xs:element>
+				<xs:element ref="CreditCardIssueNumber"></xs:element>
+				<xs:element ref="MerchantAccount" minOccurs="0"></xs:element>
+				<xs:element ref="CurrencyCode" minOccurs="0"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:unsignedInt">
+						<xs:enumeration value="0"></xs:enumeration>
+						<xs:enumeration value="1"></xs:enumeration>
+						<xs:enumeration value="2"></xs:enumeration>
+						<xs:enumeration value="3"></xs:enumeration>
+						<xs:enumeration value="4"></xs:enumeration>
+						<xs:enumeration value="5"></xs:enumeration>
+						<xs:enumeration value="6"></xs:enumeration>
+						<xs:enumeration value="7"></xs:enumeration>
+						<xs:enumeration value="8"></xs:enumeration>
+						<xs:enumeration value="9"></xs:enumeration>
+						<xs:enumeration value="10"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PaymentPlan">
+		<xs:complexType>
+			<xs:attribute name="paymentPlanID" type="xs:unsignedInt" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PhoneNumber">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PickLocation">
+		<xs:complexType mixed="true">
+			<xs:attribute name="zone" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="aisle" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="shelf" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="location" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Loc1"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Price">
+		<xs:complexType mixed="true">
+			<xs:attribute name="priceType" type="xs:decimal" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductDescription">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ProductName">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ProductTypeDescription">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Promotion">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="PROMO1"></xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Quantity">
+		<xs:complexType mixed="true">
+			<xs:attribute name="bonus" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="0"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShipDate" type="OMDate"></xs:element>
+	<xs:element name="Shipment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TotalCOGS"></xs:element>
+				<xs:element ref="TotalLines"></xs:element>
+				<xs:element ref="File"></xs:element>
+				<xs:element ref="SubAgent"></xs:element>
+				<xs:element ref="TotalUnits"></xs:element>
+				<xs:element ref="ShipDate"></xs:element>
+				<xs:element ref="TrackingNumber"></xs:element>
+				<xs:element ref="ShipmentNumber"></xs:element>
+				<xs:element ref="TotalWeight"></xs:element>
+				<xs:element ref="Cart"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="shipmentID" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="transmissionID" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShipmentNumber">
+		<xs:complexType mixed="true">
+			<xs:attribute name="shipmentID" type="xs:unsignedInt" use="required"></xs:attribute>
+			<xs:attribute name="thisShipment" type="xs:boolean" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShipperName">
+		<xs:complexType mixed="true">
+			<xs:attribute name="shipperID" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="14"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShippingAmount" type="xs:decimal"></xs:element>
+	<xs:element name="ShippingDocumentVersion">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ShippingInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Shipment"></xs:element>
+				<xs:element ref="Method"></xs:element>
+				<xs:element ref="ShipperName"></xs:element>
+				<xs:element ref="ShippingDocumentVersion"></xs:element>
+				<xs:element ref="ShippingAmount"></xs:element>
+				<xs:element ref="HandlingAmount"></xs:element>
+				<xs:element ref="CarrierData"></xs:element>
+				<xs:element ref="Address"></xs:element>
+				<xs:element ref="SubscriptionCurrent" minOccurs="0"></xs:element>
+				<xs:element ref="SubscriptionDuration" minOccurs="0"></xs:element>
+				<xs:element ref="SubscriptionPaid" minOccurs="0"></xs:element>
+				<xs:element ref="GiftMessage" minOccurs="0"></xs:element>
+				<xs:element ref="GiftWrapping" minOccurs="0"></xs:element>
+				<xs:element ref="SpecialInstructions" minOccurs="0"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="State">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StoreCode" type="xs:string"></xs:element>
+	<xs:element name="Street1">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Street2" type="xs:string"></xs:element>
+	<xs:element name="SubAgent">
+		<xs:complexType>
+			<xs:attribute name="code" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="subAgentID" type="xs:unsignedInt" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubCity" type="xs:string"></xs:element>
+	<xs:element name="SupplierItemCode">
+		<xs:complexType mixed="true">
+			<xs:attribute name="supplierID" type="xs:unsignedInt" use="optional"></xs:attribute>
+			<xs:attribute name="SupplierItemCode" type="xs:string" use="optional"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TLD">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Tax">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:decimal">
+					<xs:attribute name="taxPercent" type="xs:decimal" use="required"></xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Title">
+		<xs:annotation>
+			<xs:documentation>code / alphaCode:
+        0: 
+         1: Mr
+         2: Mrs
+         3: Ms
+         4: Miss
+</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="code" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="3"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="alphaCode" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="A"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TodayDate">
+		<xs:simpleType>
+			<xs:restriction base="OMDate"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TodayDay" type="xs:unsignedInt"></xs:element>
+	<xs:element name="TodayMonth" type="xs:unsignedInt"></xs:element>
+	<xs:element name="TodayYear" type="xs:unsignedInt"></xs:element>
+	<xs:element name="TotalAmount" type="xs:decimal"></xs:element>
+	<xs:element name="TotalCOGS" type="xs:decimal"></xs:element>
+	<xs:element name="TotalDiscount" type="xs:decimal"></xs:element>
+	<xs:element name="TotalLines" type="xs:unsignedInt"></xs:element>
+	<xs:element name="TotalPaid" type="xs:decimal"></xs:element>
+	<xs:element name="TotalPrice" type="xs:decimal"></xs:element>
+	<xs:element name="TotalUnits" type="xs:unsignedInt"></xs:element>
+	<xs:element name="TotalWeight" type="xs:decimal"></xs:element>
+	<xs:element name="TrackingNumber" type="xs:string"></xs:element>
+	<xs:element name="UPCCode" type="xs:string"></xs:element>
+	<xs:element name="UnitCOGS" type="xs:decimal"></xs:element>
+	<xs:element name="UnitOfMeasure" type="xs:string"></xs:element>
+	<xs:element name="UnitPrice" type="xs:decimal"></xs:element>
+	<xs:element name="UserDescription">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="UserName">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="WaitDate" type="OMDate"></xs:element>
+	<xs:element name="WarehouseReference" type="xs:string"></xs:element>
+	<xs:element name="StandingOrderNote">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="RecurrenceDiscountAmount" type="xs:decimal"></xs:element>
+	<xs:element name="RecurrenceDiscountPercent" type="xs:decimal"></xs:element>
+	<xs:element name="SubscriptionDuration" type="xs:unsignedInt"></xs:element>
+	<xs:element name="SubscriptionCurrent" type="xs:unsignedInt"></xs:element>
+	<xs:element name="SubscriptionPaid" type="xs:decimal"></xs:element>
+	<xs:element name="CustomFields">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Field" minOccurs="0" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CollectionInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StartDate" minOccurs="0"></xs:element>
+				<xs:element ref="EndDate" minOccurs="0"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderAdditionalInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MultiVendor"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Field">
+		<xs:complexType mixed="true">
+			<xs:attribute name="fieldID" type="xs:unsignedInt" use="required"></xs:attribute>
+			<xs:attribute name="lineNumber" type="xs:unsignedInt" use="required"></xs:attribute>
+			<xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ZIP">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MultiVendor" type="xs:boolean"></xs:element>
+	<xs:element name="GiftWrapping" type="xs:string"></xs:element>
+	<xs:element name="GiftMessage" type="xs:string"></xs:element>
+	<xs:element name="SpecialInstructions" type="xs:string"></xs:element>
+	<xs:element name="StartDate" type="OMDate"></xs:element>
+	<xs:element name="DateOfBirth" type="OMDate"></xs:element>
+	<xs:element name="EW">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Latitude">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LatitudeAF">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ErrorData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Error" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Error">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LatitudeDegreeReal" type="xs:int"></xs:element>
+	<xs:element name="LatitudeReal" type="xs:int"></xs:element>
+	<xs:element name="LatitudeTimeReal" type="OMDate"></xs:element>
+	<xs:element name="Longitude">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LongitudeAF">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LongitudeDegreeReal" type="xs:int"></xs:element>
+	<xs:element name="LongitudeReal" type="xs:int"></xs:element>
+	<xs:element name="LongitudeTimeReal" type="OMDate"></xs:element>
+	<xs:element name="NS">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PlaceOfBirth">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PlaceOfBirthCode">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PlaceOfBirthCodeAF">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PlaceOfBirthState">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PlaceOfBirthTLD">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TimeOfBirth">
+		<xs:simpleType>
+			<xs:restriction base="OMDate"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ZodiacSign">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StockXml">
+		<xs:annotation>
+			<xs:documentation>available if company parameter SIRIncludeStockReport is set to True</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MerchantAccount">
+		<xs:annotation>
+			<xs:documentation>available when payment type is 1 (Credit Card) or 7 (E Check), and division has set up MerchantAccount.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CurrencyCode">
+		<xs:annotation>
+			<xs:documentation>available when payment type is 1 (Credit Card) or 7 (E Check), and division has set up CurrencyCode</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EndDate" type="OMDate"></xs:element>
+	<xs:simpleType name="OMDate">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+Dates are almost the same as the W3C Schema "date" type, but with a space 
+instead of the "T" separating the date from the time.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d\d\d\d\-\d\d\-\d\d(\s(\d\d:\d\d)|(\d\d:\d\d:\d\d)|(\d\d:\d\d:\d\d\.\d\d\d))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

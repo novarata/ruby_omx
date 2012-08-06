@@ -164,7 +164,6 @@ class OrdersTest < MiniTest::Unit::TestCase
   	rescue MissingOrderOptions
   	end
     
-    # Should work
     order_data[:line_items][0].merge!({ :item_code => 'SKU' })
 		response = @connection.send_udoa_request(order_data)
 
@@ -183,4 +182,38 @@ class OrdersTest < MiniTest::Unit::TestCase
 		assert_kind_of UDOAResponse, response
 		assert_equal 'OMX-ofyccytnacrtnedlldmyed', response.OMX
   end
+  
+  def test_send_info_request
+  	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(1.00)',200))
+		response = @connection.send_info_request({ :order_number => '16651' })
+		assert_kind_of OrderInformationResponse, response
+		assert !response.accessors.include?("code")
+
+    assert_equal DateTime.parse('2006-02-09 14:47:00'), response.ship_date
+    assert_equal "", response.tracking_number
+    assert_equal '16651', response.order_header.order_number
+    assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_header.order_date
+    assert_equal 1, response.line_items.length
+    assert_equal 6.52, response.line_items[0].line_cogs
+    assert_equal 6.52, response.line_items[0].unit_cogs
+    assert_equal '01-113', response.line_items[0].supplier_item_code
+    assert_equal '01-113', response.line_items[0].item_code
+    assert_instance_of OrderInfoLineStatus, response.line_items[0].line_status
+    assert_equal "OK", response.line_items[0].line_status.text
+    assert_equal 40, response.line_items[0].line_status.value  
+    assert_equal DateTime.parse('2/9/2006 2:47:00 PM'), response.line_items[0].line_status.date
+		assert_kind_of Hash, response.as_hash
+  end
+  
+  def test_send_smart_report_request
+  	@connection.stubs(:get).returns(xml_for('SmartReports',200))
+		response = @connection.send_smart_report_request
+		assert_kind_of SmartReportResponse, response
+		assert_equal 2, response.rows.length
+		assert_equal 12, response.rows[0].fields.length
+		assert_equal '1', response.rows[0].fields[0].id
+		assert_equal '12432343', response.rows[0].fields[0].value
+		assert_kind_of Hash, response.as_hash
+  end
+  
 end
