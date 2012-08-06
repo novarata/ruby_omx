@@ -19,7 +19,7 @@ module RubyOmx
 		# Order Information
 		
 		def build_info_request(params={})
-		  OrderInformationRequest.new(params.merge({:http_biz_id=>@http_biz_id}))
+		  OrderInformationRequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
 		end
 
     def send_info_request(params={})
