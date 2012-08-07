@@ -194,6 +194,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal '16651', response.order_header.order_number
     assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_header.order_date
     assert_equal 1, response.line_items.length
+    assert_equal '16651-1', response.line_items[0].shipment_number
     assert_equal 6.52, response.line_items[0].line_cogs
     assert_equal 6.52, response.line_items[0].unit_cogs
     assert_equal '01-113', response.line_items[0].supplier_item_code

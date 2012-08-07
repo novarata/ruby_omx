@@ -24,8 +24,11 @@ module RubyOmx
     xml_reader :quantity
     xml_reader :price
     xml_reader :line_status, :as=>OrderInfoLineStatus
+
     xml_reader :warehouse_reference
     xml_reader :tracking_number
+    
+    xml_reader :shipment_number
     xml_reader :line_cogs, :from=>'LineCOGS', :as=>Float
     xml_reader :unit_cogs, :from=>'UnitCOGS', :as=>Float
     xml_reader :supplier_item_code
