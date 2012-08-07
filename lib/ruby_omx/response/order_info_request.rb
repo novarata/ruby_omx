@@ -8,14 +8,14 @@ module RubyOmx
       udi_auth_token = a.delete(:udi_auth_token)
             
       raise MissingOrderOptions if a[:order_number].nil? && (a[:store_code].nil? || a[:order_id].nil?)
+      self.version = a[:version] ||= '1.00'
       super
-      self.version = a[:version] ||= '2.00'
       
       self.udi_parameters = []
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'UDIAuthToken', :value=>udi_auth_token})
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'HTTPBizID', :value=>http_biz_id})
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'OrderNumber', :value=>a[:order_number]}) if a[:order_number]
-      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'OrderId', :value=>a[:order_id]}) if a[:order_id]
+      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'OrderID', :value=>a[:order_id]}) if a[:order_id]
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'StoreCode', :value=>a[:store_code]}) if a[:store_code]
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'level', :value=>a[:level] ||=2 })
     end

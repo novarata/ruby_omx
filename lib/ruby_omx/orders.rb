@@ -19,7 +19,11 @@ module RubyOmx
 		# Order Information
 		
 		def build_info_request(params={})
-		  OrderInformationRequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+		  if params['version'] == '2.00'
+		    OrderInformationRequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token, :server=>RubyOmx::ALT_HOST + "?UDIAuthToken=#{@udi_auth_token}"}))
+		  else
+		    OrderInformationRequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+		  end
 		end
 
     def send_info_request(params={})
