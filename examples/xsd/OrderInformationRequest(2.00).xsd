@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+<xs:annotation>
+	<xs:documentation>
+			
+			HTTPBizID (required) - This identifies the OrderMotion account, and is normally 255 characters in length.
+
+			OderNumber (optional): either OrderNumber or StoreCode/OrderID must be provided.
+
+			OrderLocator (optional) : use an OrderLocator to get the OrderNumber instead of passing it.
+
+			StoreCode and OrderID (optional): either OrderNumber or StoreCode/OrderID must be provided.
+
+			Level (optional): Use level “2” to see additional order information
+
+			SubscriptionInstanceID (optional)
+	</xs:documentation>
+</xs:annotation>
+<xs:annotation>
+	<xs:documentation>
+		OrderInformationRequest 2.00 
+
+		This command enables you to retreive order information.
+	</xs:documentation>
+</xs:annotation>
+  <xs:element name="OrderInformationRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="UDIParameter" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Parameter" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="Parameter_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="key" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="OrderInformationRequest" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

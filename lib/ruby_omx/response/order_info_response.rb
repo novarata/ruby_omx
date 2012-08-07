@@ -6,7 +6,7 @@ module RubyOmx
     xml_name "LineStatus"
     #<LineStatus date="2/9/2006 2:47:00 PM" text="OK">40</LineStatus>
     xml_reader :text, :from => '@text'  # C/L means cancelled, OK with a date means processing
-    xml_reader :date, :from => '@date', :as=>DateTime # cancellation date if cancelled, processing date if processing
+    xml_reader :date, :from => "@date" # reverting to string as date is invalid, cancellation date if cancelled, processing date if processing
     xml_reader :value, :from => :content, :as=>Integer
   end
   
@@ -14,6 +14,8 @@ module RubyOmx
     xml_name "OrderHeader"
     xml_reader :order_id
     xml_reader :order_number
+    xml_reader :order_status_code, :from => '@statusCode', :in=>'OrderStatus'
+    xml_reader :order_status_date, :as=>DateTime
     xml_reader :order_date, :as=>DateTime
   end
       
@@ -47,6 +49,8 @@ module RubyOmx
 
   class OrderInformationResponse < Response
     xml_name "OrderInformationResponse"
+    xml_reader :success
+    
     xml_reader :order_header, :as=>OrderInfoOrderHeader
     #xml_reader :shipping_information, :as=>OrderInfoShippingInfo
     xml_reader :line_items, :as => [OrderInfoLineItem], :in=>'OrderDetail'

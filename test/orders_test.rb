@@ -184,26 +184,37 @@ class OrdersTest < MiniTest::Unit::TestCase
   end
   
   def test_send_info_request
-  	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(1.00)',200))
+  	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(2.00)',200))
 		response = @connection.send_info_request({ :order_number => '16651' })
 		assert_kind_of OrderInformationResponse, response
-		assert !response.accessors.include?("code")
 
-    assert_equal DateTime.parse('2006-02-09 14:47:00'), response.ship_date
+    assert_nil response.ship_date
     assert_equal "", response.tracking_number
-    assert_equal '16651', response.order_header.order_number
-    assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_header.order_date
-    assert_equal 1, response.line_items.length
-    assert_equal '16651-1', response.line_items[0].shipment_number
-    assert_equal 6.52, response.line_items[0].line_cogs
-    assert_equal 6.52, response.line_items[0].unit_cogs
-    assert_equal '01-113', response.line_items[0].supplier_item_code
-    assert_equal '01-113', response.line_items[0].item_code
+
+    assert_nil response.order_header.order_id    
+    assert_equal '24603', response.order_header.order_number
+    assert_equal DateTime.parse('2003-04-01 22:15:00'), response.order_header.order_date
+    assert_equal DateTime.parse('2010-05-31 05:36:00'), response.order_header.order_status_date
+    assert_equal '4', response.order_header.order_status_code
+
+    
+    assert_equal 2, response.line_items.length
+    assert_equal '24603-0', response.line_items[0].shipment_number
+    assert_equal 10, response.line_items[0].line_cogs
+    assert_equal 10, response.line_items[0].unit_cogs
+
+    assert_equal 'APPLE', response.line_items[0].warehouse_reference
+    assert_equal 'APPLE', response.line_items[0].item_code
+    assert_equal 'APPLE', response.line_items[0].supplier_item_code
+    
     assert_instance_of OrderInfoLineStatus, response.line_items[0].line_status
     assert_equal "OK", response.line_items[0].line_status.text
     assert_equal 40, response.line_items[0].line_status.value  
-    assert_equal DateTime.parse('2/9/2006 2:47:00 PM'), response.line_items[0].line_status.date
+    assert_equal '5/31/2010 5:36:00 AM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
+		
+		response = @connection.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01' })
+		assert_kind_of OrderInformationResponse, response
   end
   
   def test_send_smart_report_request

@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="Jurisdiction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="TaxPercent" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+        <xs:element name="ItemTax" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+        <xs:element name="Exemption" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+        <xs:element name="ExemptedTax" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+      </xs:sequence>
+      <xs:attribute name="level" type="xs:string" />
+      <xs:attribute name="type" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Address">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FullName" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+        <xs:element name="Company" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+        <xs:element name="FullAddress" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+        <xs:element name="Firstname" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+        <xs:element name="MidInitial" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+        <xs:element name="Lastname" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+        <xs:element name="Street1" type="xs:string" minOccurs="0" msdata:Ordinal="7" />
+        <xs:element name="Street2" type="xs:string" minOccurs="0" msdata:Ordinal="8" />
+        <xs:element name="Address1" type="xs:string" minOccurs="0" msdata:Ordinal="9" />
+        <xs:element name="Address2" type="xs:string" minOccurs="0" msdata:Ordinal="10" />
+        <xs:element name="SubCity" type="xs:string" minOccurs="0" msdata:Ordinal="11" />
+        <xs:element name="Apartment" type="xs:string" minOccurs="0" msdata:Ordinal="12" />
+        <xs:element name="Building" type="xs:string" minOccurs="0" msdata:Ordinal="13" />
+        <xs:element name="County" type="xs:string" minOccurs="0" msdata:Ordinal="14" />
+        <xs:element name="City" type="xs:string" minOccurs="0" msdata:Ordinal="15" />
+        <xs:element name="ZIP" type="xs:string" minOccurs="0" msdata:Ordinal="16" />
+        <xs:element name="TLD" type="xs:string" minOccurs="0" msdata:Ordinal="17" />
+        <xs:element name="State" type="xs:string" minOccurs="0" msdata:Ordinal="18" />
+        <xs:element name="Email" type="xs:string" minOccurs="0" msdata:Ordinal="19" />
+        <xs:element name="FullPhone" type="xs:string" minOccurs="0" msdata:Ordinal="20" />
+        <xs:element name="UseShipTo" type="xs:string" minOccurs="0" msdata:Ordinal="21" />
+        <xs:element name="Country" type="xs:string" minOccurs="0" msdata:Ordinal="22" />
+        <xs:element name="PhoneNumber" type="xs:string" minOccurs="0" msdata:Ordinal="25" />
+        <xs:element name="Title" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="code" type="xs:string" />
+            <xs:attribute name="alphaCode" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="type" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrderInformationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Success" type="xs:string" minOccurs="0" />
+        <xs:element name="PaymentSummary" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LastPayDate" type="xs:string" minOccurs="0" />
+              <xs:element name="LastAttemptDate" type="xs:string" minOccurs="0" />
+              <xs:element name="AttemptsToDate" type="xs:string" minOccurs="0" />
+              <xs:element name="MaxAttemptsConfigured" type="xs:string" minOccurs="0" />
+              <xs:element name="EarliestOverduePaymentDate" type="xs:string" minOccurs="0" />
+              <xs:element name="OverduePaymentCount" type="xs:string" minOccurs="0" />
+              <xs:element name="MaxOverdueDays" type="xs:string" minOccurs="0" />
+              <xs:element name="LastCreditCardStatus" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="LastCreditCardStatus_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="status" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OrderHeader" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OrderID" type="xs:string" minOccurs="0" />
+              <xs:element name="Tax" type="xs:string" minOccurs="0" />
+              <xs:element name="NetAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="KeycodeDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="KeycodeAdVersion" type="xs:string" minOccurs="0" />
+              <xs:element name="OverwriteKeycode" type="xs:string" minOccurs="0" />
+              <xs:element name="Promotion" type="xs:string" minOccurs="0" />
+              <xs:element name="TodayDay" type="xs:string" minOccurs="0" />
+              <xs:element name="TodayMonth" type="xs:string" minOccurs="0" />
+              <xs:element name="TodayYear" type="xs:string" minOccurs="0" />
+              <xs:element name="TodayDate" type="xs:string" minOccurs="0" />
+              <xs:element name="UserDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="PIN" type="xs:string" minOccurs="0" />
+              <xs:element name="UserName" type="xs:string" minOccurs="0" />
+              <xs:element name="WaitDate" type="xs:string" minOccurs="0" />
+              <xs:element name="LastPaidDate" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Keycode" type="xs:string" minOccurs="0" />
+              <xs:element name="KeyedDate" type="xs:string" minOccurs="0" />
+              <xs:element name="StoreCode" type="xs:string" minOccurs="0" />
+              <xs:element name="Balance" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalPaid" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalWrittenOff" type="xs:string" minOccurs="0" />
+              <xs:element name="CollectionsCycle" type="xs:string" minOccurs="0" />
+              <xs:element name="FirstCollectionsDate" type="xs:string" minOccurs="0" />
+              <xs:element name="DNIS" type="xs:string" minOccurs="0" />
+              <xs:element name="StationCode" type="xs:string" minOccurs="0" />
+              <xs:element name="SalesPricesIncludeTax" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderDate" type="xs:string" minOccurs="0" />
+              <xs:element name="StandingOrderNote" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalDiscount" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomFields" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderFlags" type="xs:string" minOccurs="0" />
+              <xs:element name="OrderStatusDate" type="OMDate" minOccurs="0" />
+              <xs:element name="Division" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="Division_Text" msdata:Ordinal="2">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="divisionID" type="xs:string" />
+                      <xs:attribute name="website" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PrimaryPaymentType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="PrimaryPaymentType_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="type" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="OriginType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="OriginType_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="textValue" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="OrderStatus" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="OrderStatus_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="statusCode" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PaymentPlan" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="paymentPlanID" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ShippingInformation" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SHTax" type="xs:string" minOccurs="0" />
+              <xs:element name="SHTaxPercent" type="xs:string" minOccurs="0" />
+              <xs:element name="ShippingAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="ShippingDocumentVersion" type="xs:string" minOccurs="0" />
+              <xs:element name="HandlingAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="CarrierData" type="xs:string" minOccurs="0" />
+              <xs:element name="GiftMessage" type="xs:string" minOccurs="0" />
+              <xs:element name="GiftSender" type="xs:string" minOccurs="0" />
+              <xs:element name="GiftRecipient" type="xs:string" minOccurs="0" />
+              <xs:element name="SpecialInstructions" type="xs:string" minOccurs="0" />
+              <xs:element name="Method" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="Method_Text" msdata:Ordinal="5">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="code" type="xs:string" />
+                      <xs:attribute name="fulfillmentCode" type="xs:string" />
+                      <xs:attribute name="fulfillmentIndicator" type="xs:string" />
+                      <xs:attribute name="carrierServiceCode" type="xs:string" />
+                      <xs:attribute name="carrierName" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ShipperName" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="ShipperName_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="shipperID" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Shipment" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+		    <xs:element name="ShipmentNumber" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                    <xs:element name="TotalCOGS" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+                    <xs:element name="TotalLines" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+                    <xs:element name="TotalUnits" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+                    <xs:element name="TotalWeight" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+                    <xs:element name="TotalShippingWeight" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+                    <xs:element name="ShipDate" type="xs:string" minOccurs="0" msdata:Ordinal="7" />
+                    <xs:element name="TrackingNumber" type="xs:string" minOccurs="0" msdata:Ordinal="8" />
+                    <xs:element name="SubAgent" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="code" type="xs:string" />
+                        <xs:attribute name="subAgentID" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="File" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="fileSubCode" type="xs:string" />
+                        <xs:attribute name="fileNumber" type="xs:string" />
+                        <xs:attribute name="fileName" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Cart" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="controlNumber" type="xs:string" />
+                        <xs:attribute name="pickSequenceNumber" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+		    <xs:element name="Cost" type="xs:decimal" minOccurs="0" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                  <xs:attribute name="shipmentID" type="xs:string" />
+                  <xs:attribute name="transmissionID" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="GiftWrapping" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:simpleContent msdata:ColumnName="GiftWrapping_Text" msdata:Ordinal="1">
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="textValue" type="xs:string" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="SHTaxDetail" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element ref="Jurisdiction" minOccurs="0" maxOccurs="unbounded" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element ref="Address" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Customer" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Level" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+              <xs:element name="DateOfBirth" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+              <xs:element name="TimeOfBirth" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+              <xs:element name="PlaceOfBirth" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+              <xs:element name="PlaceOfBirthTLD" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+              <xs:element name="PlaceOfBirthState" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+              <xs:element name="PlaceOfBirthCode" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+              <xs:element name="NS" type="xs:string" minOccurs="0" msdata:Ordinal="7" />
+              <xs:element name="EW" type="xs:string" minOccurs="0" msdata:Ordinal="8" />
+              <xs:element name="LatitudeReal" type="xs:string" minOccurs="0" msdata:Ordinal="9" />
+              <xs:element name="LongitudeReal" type="xs:string" minOccurs="0" msdata:Ordinal="10" />
+              <xs:element name="Longitude" type="xs:string" minOccurs="0" msdata:Ordinal="11" />
+              <xs:element name="Latitude" type="xs:string" minOccurs="0" msdata:Ordinal="12" />
+              <xs:element name="PlaceOfBirthCodeAF" type="xs:string" minOccurs="0" msdata:Ordinal="13" />
+              <xs:element name="LongitudeAF" type="xs:string" minOccurs="0" msdata:Ordinal="14" />
+              <xs:element name="LatitudeAF" type="xs:string" minOccurs="0" msdata:Ordinal="15" />
+              <xs:element name="ZodiacSign" type="xs:string" minOccurs="0" msdata:Ordinal="16" />
+              <xs:element name="Field_22" type="xs:string" minOccurs="0" msdata:Ordinal="18" />
+              <xs:element name="Field_104" type="xs:string" minOccurs="0" msdata:Ordinal="19" />
+              <xs:element name="Field_131" type="xs:string" minOccurs="0" msdata:Ordinal="20" />
+              <xs:element name="Field_132" type="xs:string" minOccurs="0" msdata:Ordinal="21" />
+              <xs:element name="Field_20012" type="xs:string" minOccurs="0" msdata:Ordinal="22" />
+              <xs:element name="Field_20015" type="xs:string" minOccurs="0" msdata:Ordinal="23" />
+              <xs:element name="Field_20016" type="xs:string" minOccurs="0" msdata:Ordinal="24" />
+              <xs:element ref="Address" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element name="FlagData" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Flag" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="Flag_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="name" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="CustomerStats" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FirstOrder" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="number" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Payment" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CreditCardType" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+
+              <xs:element name="CreditCardName" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+              <xs:element name="CreditCardExpDate" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+              <xs:element name="CreditCardAuthCode" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+              <xs:element name="BankRoutingNumber" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+              <xs:element name="BankAccountNumber" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+              <xs:element name="CreditCardStartDate" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+              <xs:element name="CreditCardIssueNumber" type="xs:string" minOccurs="0" msdata:Ordinal="7" />
+              <xs:element name="PaymentInfoTitle" type="xs:string" minOccurs="0" msdata:Ordinal="8" />
+              <xs:element name="PaymentInfoText" type="xs:string" minOccurs="0" msdata:Ordinal="9" />
+              <xs:element name="CreditCardNumber" minOccurs="0" msdata:Ordinal="10">
+				<xs:complexType>
+					<xs:simpleContent>
+					  <xs:extension base="xs:string">
+						<xs:attribute name="storageExpired" type="xs:boolean"/>
+						<xs:attribute name="masked" type="xs:boolean"/>
+					  </xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			  </xs:element>
+              <xs:element name="CreditCardCCV" minOccurs="0" msdata:Ordinal="11">
+				<xs:complexType>
+					<xs:simpleContent>
+					  <xs:extension base="xs:string">
+						<xs:attribute name="masked" type="xs:boolean"/>
+					  </xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		    <xs:element name="GiftCertificateCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="type" type="xs:string" />
+            <xs:attribute name="description" type="xs:string" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OrderDetail" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LineItem" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="DefaultUnitPrice" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                    <xs:element name="LineCOGS" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+                    <xs:element name="UnitCOGS" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+                    <xs:element name="ItemType" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+                    <xs:element name="WarehouseReference" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+                    <xs:element name="FulfillmentReference" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+                    <xs:element name="ProductTypeDescription" type="xs:string" minOccurs="0" msdata:Ordinal="7" />
+                    <xs:element name="ProductName" type="xs:string" minOccurs="0" msdata:Ordinal="8" />
+                    <xs:element name="Info" type="xs:string" minOccurs="0" msdata:Ordinal="9" />
+                    <xs:element name="ProductDescription" type="xs:string" minOccurs="0" msdata:Ordinal="10" />
+                    <xs:element name="UPCCode" type="xs:string" minOccurs="0" msdata:Ordinal="11" />
+                    <xs:element name="UnitOfMeasure" type="xs:string" minOccurs="0" msdata:Ordinal="12" />
+                    <xs:element name="FulfillmentInstructions" type="xs:string" minOccurs="0" msdata:Ordinal="13" />
+                    <xs:element name="AllocatedSH" type="xs:string" minOccurs="0" msdata:Ordinal="14" />
+                    <xs:element name="AllocatedSHTax" type="xs:string" minOccurs="0" msdata:Ordinal="15" />
+                    <xs:element name="ShipAloneFlag" type="xs:string" minOccurs="0" msdata:Ordinal="16" />
+                    <xs:element name="OversizeFlag" type="xs:string" minOccurs="0" msdata:Ordinal="17" />
+                    <xs:element name="TotalPrice" type="xs:string" minOccurs="0" msdata:Ordinal="18" />
+                    <xs:element name="UnitPrice" type="xs:string" minOccurs="0" msdata:Ordinal="19" />
+                    <xs:element name="EffectiveUnitPrice" type="xs:string" minOccurs="0" msdata:Ordinal="20" />
+                    <xs:element name="TrackingNumber" type="xs:string" minOccurs="0" msdata:Ordinal="21" />
+                    <xs:element name="FileSubCode" type="xs:string" minOccurs="0" msdata:Ordinal="22" />
+                    <xs:element name="FileNumber" type="xs:string" minOccurs="0" msdata:Ordinal="23" />
+                    <xs:element name="LineDiscount" type="xs:string" minOccurs="0" msdata:Ordinal="24" />
+                    <xs:element name="CustomsTariff" type="xs:string" minOccurs="0" msdata:Ordinal="25" />
+                    <xs:element name="ShipmentNumber" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="ShipmentNumber_Text" msdata:Ordinal="2">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="shipmentID" type="xs:string" />
+                            <xs:attribute name="thisShipment" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ItemCode" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="ItemCode_Text" msdata:Ordinal="2">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="parentLineItemCode" type="xs:string" />
+                            <xs:attribute name="barcode2of5" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="PickLocation" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="PickLocation_Text" msdata:Ordinal="5">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="zone" type="xs:string" />
+                            <xs:attribute name="aisle" type="xs:string" />
+                            <xs:attribute name="shelf" type="xs:string" />
+                            <xs:attribute name="bin" type="xs:string" />
+                            <xs:attribute name="location" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Quantity" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="Quantity_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="bonus" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ShippingQuantity" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="ShippingQuantity_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="bonus" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Price" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="Price_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="priceType" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Tax" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="Tax_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="taxPercent" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TaxDetail" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element ref="Jurisdiction" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                        <xs:attribute name="taxCode" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ItemAttributes" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="AttributeValue" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="attributeID" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DimensionData" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Weight" type="xs:string" minOccurs="0" />
+                          <xs:element name="Width" type="xs:string" minOccurs="0" />
+                          <xs:element name="Height" type="xs:string" minOccurs="0" />
+                          <xs:element name="Depth" type="xs:string" minOccurs="0" />
+                          <xs:element name="DimensionLabel1" type="xs:string" minOccurs="0" />
+                          <xs:element name="DimensionLabel2" type="xs:string" minOccurs="0" />
+                          <xs:element name="DimensionLabel3" type="xs:string" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Recurrence" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="RecurrenceDiscountAmount" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                          <xs:element name="RecurrenceDiscountPercent" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                        </xs:sequence>
+                        <xs:attribute name="RecurrencePatternID" type="xs:string" />
+                        <xs:attribute name="RecurrenceCount" type="xs:string" />
+                        <xs:attribute name="ConfigurationID" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="LineStatus" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="LineStatus_Text" msdata:Ordinal="2">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="date" type="xs:string" />
+                            <xs:attribute name="text" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="SupplierItemCode" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:simpleContent msdata:ColumnName="SupplierItemCode_Text" msdata:Ordinal="1">
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="supplierID" type="xs:string" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ItemCustomizationData" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CustomizationField" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Value" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                                <xs:element name="Surcharge" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                              </xs:sequence>
+                              <xs:attribute name="fieldID" type="xs:string" />
+                              <xs:attribute name="fieldName" type="xs:string" />
+                              <xs:attribute name="outputFulfillmentFile" type="xs:string" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+					<xs:element name="SecondaryLineStatus" minOccurs="0">
+                      <xs:complexType>
+						<xs:simpleContent>
+						  <xs:extension base="xs:string">
+							<xs:attribute name="ID" type="xs:integer" use="required"/>
+							<xs:attribute name="code" type="xs:string" use="required"/>
+						  </xs:extension>
+						</xs:simpleContent>
+					  </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="lineNumber" type="xs:string" />
+                  <xs:attribute name="output" type="xs:string" />
+                  <xs:attribute name="parentLineNumber" type="xs:string" />
+                  <xs:attribute name="orderLineAdditionType" type="xs:string" />
+                  <xs:attribute name="originalLineNumber" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Jurisdiction" />
+        <xs:element ref="Address" />
+        <xs:element ref="OrderInformationResponse" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  
+<xs:simpleType name="OMDate">
+	<xs:annotation>
+	<xs:documentation xml:lang="en">
+		Dates are almost the same as the W3C Schema "date" type, but with a space 
+		instead of the "T" separating the date from the time.
+	</xs:documentation>
+	</xs:annotation>
+	<xs:restriction base="xs:string">
+	<xs:pattern value="(\d\d\d\d-\d\d-\d\d( \d\d:\d\d(:\d\d(\.\d\d\d)?)?)?)?"/>
+	</xs:restriction>
+</xs:simpleType>
+</xs:schema>

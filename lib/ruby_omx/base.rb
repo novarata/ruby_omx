@@ -1,6 +1,7 @@
 module RubyOmx
 	DEFAULT_HOST = 'https://api.omx.ordermotion.com/hdde/xml/udi.asp'
-	
+	ALT_HOST = 'https://api.omx.ordermotion.com/OM2/udi.ashx'
+  
 	class Base
   	attr_accessor :connection
 

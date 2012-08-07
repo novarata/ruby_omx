@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OrderInformationRequest version="2.00">
+    <UDIParameter>
+        <Parameter key="HTTPBizID">TestHTTPBizID0123456789</Parameter>
+        <Parameter key="OrderNumber">24603</Parameter>
+		<Parameter key="OrderLocator">OMX-ofvphkpbuvkuwcbaabgvcb</Parameter>
+        <Parameter key="Level">2</Parameter>
+    </UDIParameter>
+</OrderInformationRequest>
