@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="PurchaseOrderUpdateResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Success" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>
+							Success == 1 means a response to a successful request, Success == 0 means a response to a request with errors and the ErrorData element is specified.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="PurchaseOrder" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Only if Success == 1 this element is specified.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="PONumber" type="xs:integer" use="required"/>
+						<xs:attribute name="SupplierID" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PODate" type="xs:date" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Only if Success == 1 this element is specified.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="TotalAmount" type="xs:float" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Only if Success == 1 this element is specified.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Action" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Action == "New" if a new PO number was just assigned, otherwise Action == "Update" if a PO number was supplied and the PO's header properties were changed, and/or a PO line was added or updated. Only if Success == 1 this element is specified.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ErrorData" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>
+							Only if Success == 0 this element is specified.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Error" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="errorID" type="xs:string" use="required"/>
+											<xs:attribute name="errorSeverity" type="xs:string" use="required"/>
+											<xs:attribute name="errorDetail0" type="xs:string" use="required"/>
+											<xs:attribute name="errorDetail1" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

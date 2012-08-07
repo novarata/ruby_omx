@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PurchaseOrderUpdateRequest version="1.00">
+	<UDIParameter>
+		<Parameter key="UDIAuthToken">470db4004809083c0048ef983</Parameter>
+		<Parameter key="HTTPBizID">your HTTPBizID here</Parameter>
+	</UDIParameter>
+	<PurchaseOrder PONumber="16651" supplierID="76"> <!-- if new PO, PONumber is omitted/empty and supplierID is required; if updating PO, PONumber is required and supplierID is unused -->
+		<Address type="ShipTo"> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+			<FullAddress>
+Ms Sun O'neil S
+1 main st, 2314
+Richmond Hill ON L4B 3M4
+Canada</FullAddress>
+		</Address>
+		<Address type="BillTo"> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+			<FullAddress>
+Ms Sun O'neil S
+1 main st, 2314
+Richmond Hill ON L4B 3M4
+Canada</FullAddress>
+		</Address>
+		<ShipVia>UPS</ShipVia> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+		<ExpectedDeliveryDate>2008-10-11</ExpectedDeliveryDate> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+		<PaymentTerms>C.O.D.</PaymentTerms> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+		<DeliveryTerms>Balance due on delivery</DeliveryTerms> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+		<CrossReference>PO 12345</CrossReference> <!-- optional. If the element is omitted on Update, existing value is not changed-->
+		<LineDetail> <!-- must have at least 1 LineItem element if creating new PO. -->
+			<LineItem lineNumber="1"> <!-- lineNumber attribute should be omitted if new PO Line otherwise if updating to existing line, must specify line number) -->
+				<ItemCode>WATCH-1</ItemCode> <!-- always required -->
+				<Quantity>1</Quantity> <!-- required for new line, optional for update (if omitted, existing value is not changed) -->
+				<Price>122.50</Price> <!-- required for new line, optional for update (if omitted, existing value is not changed) -->
+				<UpdateStandardPrice>False</UpdateStandardPrice> <!-- always optional, default to False (if omitted on update, existing value is not changed) -->
+				<DiscountPercent>25</DiscountPercent> <!-- always optional, and only allowed when "PODiscount" company parameter is enabled (if omitted on update, existing value is not changed) -->
+				<CancelLine>True</CancelLine> <!-- only allowed on Update of an existing line (lineNumber provided). All other elements in the LineItem element are ignored except the ItemCode which is validated to make sure it matches. -->
+			</LineItem>
+			<LineItem lineNumber="2"> <!-- lineNumber attribute should be omitted if new PO Line otherwise if updating to existing line, must specify line number) -->
+				<ItemCode>APPLE-12</ItemCode> <!-- always required -->
+				<Quantity>31</Quantity> <!-- required for new line, optional for update -->
+				<Price>1.50</Price> <!-- required for new line, optional for update -->
+				<UpdateStandardPrice>False</UpdateStandardPrice> <!-- always optional, default to False (if omitted on update, existing value is not changed) -->
+				<CancelLine>True</CancelLine> <!-- only allowed on Update of an existing line (lineNumber provided). All other elements in the LineItem element are ignored except ItemCode which is validated to make sure it matches. -->
+			</LineItem>
+		</LineDetail>
+	</PurchaseOrder>
+</PurchaseOrderUpdateRequest>

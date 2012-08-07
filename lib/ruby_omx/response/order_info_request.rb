@@ -1,12 +1,6 @@
 #$wtf = "https://api.omx.ordermotion.com/hdde/xml/udi.asp?Wrapper=1&RequestType=OrderInformationRequest&RequestVersion=1.00&HTTPBizID=".BIZ_ID."&OrderNumber=".$OMorderid."&level=$level";
 module RubyOmx
 
-  class UDIParameter < Response
-    xml_name "Parameter"
-    xml_accessor :key, :from => '@key'
-    xml_accessor :value, :from => :content
-  end
-
   class OrderInformationRequest < Response
     def initialize(a=nil)
       return super unless a.present? # bail if no array of options has been given

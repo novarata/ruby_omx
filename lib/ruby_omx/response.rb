@@ -43,4 +43,13 @@ module RubyOmx
   	end
 
   end
+
+  # Shared classes
+
+  class UDIParameter < Response
+    xml_name "Parameter"
+    xml_accessor :key, :from => '@key'
+    xml_accessor :value, :from => :content
+  end
+
 end

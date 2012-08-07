@@ -22,6 +22,10 @@ module RubyOmx
   
   class MissingOrderOptions < RubyOmxException
   end
+
+  class MissingPurchaseOrderOptions < RubyOmxException
+  end
+  
   
   class MissingItemOptions < RubyOmxException
   end

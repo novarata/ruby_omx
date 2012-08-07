@@ -1,0 +1,7 @@
+<PurchaseOrderUpdateResponse>
+ <Success>1</Success>
+ <PurchaseOrder PONumber="16651" SupplierID="76"/>
+ <PODate>2008-09-21 12:32:27</PODate>
+ <TotalAmount>26.50</TotalAmount>
+ <Action>New</Action> <!-- "New" if a new PO number was just assigned, "Update" if a PO number was supplied and the PO's header properties were changed, and/or a PO line was added or updated. -->
+</PurchaseOrderUpdateResponse>

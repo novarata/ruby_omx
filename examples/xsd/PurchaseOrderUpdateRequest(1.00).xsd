@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PurchaseOrderUpdateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UDIParameter">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Parameter">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="key" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PurchaseOrder">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Address" minOccurs="0" maxOccurs="2">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed (ShipTo and BillTo can be updated independently).
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FullAddress" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="type" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="ShipTo"/>
+												<xs:enumeration value="BillTo"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ShipVia" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ExpectedDeliveryDate" type="xs:date" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="PaymentTerms" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="DeliveryTerms" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="CrossReference" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ShipToFacilityCode" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Discount" type="xs:float" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Notes" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+										If the element is omitted on Update, existing value is not changed.
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="LineDetail">
+								<xs:annotation>
+									<xs:documentation>
+										Must have at least 1 LineItem element if creating a new PO.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LineItem" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ItemCode" type="xs:string"/>
+													<xs:element name="Quantity" type="xs:integer" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Is required for a new line, optional for update (if omitted, existing value is not changed).
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="Price" type="xs:float" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Is required for a new line, optional for update (if omitted, existing value is not changed).
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="UpdateStandardPrice" type="xs:boolean" default="false" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																If omitted on update, existing value is not changed.
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="DiscountPercent" type="xs:float" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Is only allowed when "PODiscount" company parameter is enabled (if omitted on update, existing value is not changed).
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="CancelLine" type="xs:boolean" default="false" minOccurs="0">
+														<xs:annotation>
+															<xs:documentation>
+																Is only allowed on Update of an existing line (lineNumber attribute provided). All other elements in the LineItem element are ignored except the ItemCode which is validated to make sure it matches.
+															</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="lineNumber" type="xs:integer" use="optional">
+													<xs:annotation>
+														<xs:documentation>
+															lineNumber attribute should be omitted if is a new PO Line, otherwise if updating to an existing line it must be specified.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="PONumber" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:documentation>
+									If is a new PO the PONumber must be not specified (i.e.: omitted or empty) and the supplierID must be specified. If updating a PO the PONumber must be specified and the supplierID is ignored.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="supplierID" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:documentation>
+									Must be specified if the POnumber is not specified, is ignored in other case (i.e.: the PONumber is specified).
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:decimal" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
