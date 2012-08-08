@@ -10,10 +10,10 @@ module RubyOmx
       
       # These values are essential to establishing a connection
       @udi_auth_token   = params['udi_auth_token']
-      @server           = params['server'] || RubyOmx::DEFAULT_HOST + "?UDIAuthToken=#{@udi_auth_token}"
+      @server           = (params['server'] || RubyOmx::DEFAULT_HOST) + "?UDIAuthToken=#{@udi_auth_token}"
       @http_biz_id 			= params['http_biz_id']
 			@path = URI.parse(@server).request_uri
-        
+
       raise MissingConnectionOptions if [@udi_auth_token, @http_biz_id].any? {|option| option.nil?}
       @http = connect
     end

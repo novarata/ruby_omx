@@ -6,7 +6,7 @@ module RubyOmx
       return super unless a.present? # bail if no array of options has been given
       http_biz_id = a.delete(:http_biz_id)
       udi_auth_token = a.delete(:udi_auth_token)
-            
+
       raise MissingOrderOptions if a[:order_number].nil? && (a[:store_code].nil? || a[:order_id].nil?)
       self.version = a[:version] ||= '1.00'
       super

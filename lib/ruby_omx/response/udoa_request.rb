@@ -7,14 +7,6 @@ module RubyOmx
     xml_accessor :zip, :from => 'ZIP'
     xml_accessor :tld, :from => 'TLD'
   end
-
-  class LineItem < Response
-    xml_name "LineItem"
-    xml_accessor :line_number, :from => '@lineNumber'
-    xml_accessor :item_code
-    xml_accessor :quantity, :as => Integer
-    xml_accessor :unit_price, :as => Float
-  end
     
   class CustomField < Response
     xml_name 'Field'
@@ -31,6 +23,7 @@ module RubyOmx
 
   class UDOARequest < Response
     def initialize(a=nil)
+      super if a.nil?
       if !a.nil?
         http_biz_id = a.delete(:http_biz_id)
         udi_auth_token = a.delete(:udi_auth_token)
@@ -94,7 +87,7 @@ module RubyOmx
   	xml_accessor :card_auth_code, :in => 'Payment' 	    	
   	xml_accessor :card_transaction_id, :from => 'CardTransactionID', :in => 'Payment'
 
-    xml_accessor :line_items, :as => [LineItem], :in => 'OrderDetail'
+    xml_accessor :line_items, :as => [RubyOmx::LineItem], :in => 'OrderDetail'
     xml_accessor :custom_fields, :as => [CustomField], :in => 'CustomFields/Report'
     xml_accessor :total_amount, :in => 'Check'  
   end

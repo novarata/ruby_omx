@@ -52,4 +52,13 @@ module RubyOmx
     xml_accessor :value, :from => :content
   end
 
+  class LineItem < Response
+    xml_name "LineItem"
+    xml_accessor :line_number, :from => '@lineNumber'
+    xml_accessor :item_code
+    xml_accessor :quantity, :as => Integer
+    xml_accessor :unit_price, :as => Float
+    xml_accessor :price, :as => Float
+  end  
+
 end

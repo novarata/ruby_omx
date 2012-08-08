@@ -4,6 +4,10 @@ class OrdersTest < MiniTest::Unit::TestCase
   def setup
 		@config = YAML.load_file( File.join(File.dirname(__FILE__), 'test_config.yml') )['test']
 		@connection = RubyOmx::Base.new(@config)
+		
+		# Alternative connection needed for v2 of OMX API (but not for UDOA)
+		@config_alt = YAML.load_file( File.join(File.dirname(__FILE__), 'test_config.yml') )['test_alt']
+		@connection_alt = RubyOmx::Base.new(@config_alt)
   end
 
   def test_orders_request_from_xml
@@ -207,8 +211,8 @@ class OrdersTest < MiniTest::Unit::TestCase
   end
 
   def test_send_info_request2
-  	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(2.00)',200))
-		response = @connection.send_info_request({ :order_number => '24603', :version=>'2.00' })
+  	@connection_alt.stubs(:post).returns(xml_for('OrderInformationResponse(2.00)',200))
+		response = @connection_alt.send_info_request({ :order_number => '24603', :version=>'2.00' })
 		assert_kind_of OrderInformationResponse, response
 
     assert_nil response.ship_date
@@ -236,7 +240,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal '5/31/2010 5:36:00 AM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
 		
-		response = @connection.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01', :version=>'2.00' })
+		response = @connection_alt.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01', :version=>'2.00' })
 		assert_kind_of OrderInformationResponse, response
   end
   

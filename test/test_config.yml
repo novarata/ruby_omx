@@ -1,3 +1,8 @@
 test:
   udi_auth_token: 470db4004809083c0048ef983
   http_biz_id: KbmCrvnuTESTINGTESTINGYBlggjNYxGqsujuglguAJhXeKBYD
+
+test_alt:
+  udi_auth_token: 470db4004809083c0048ef983
+  http_biz_id: KbmCrvnuTESTINGTESTINGYBlggjNYxGqsujuglguAJhXeKBYD
+  server: https://api.omx.ordermotion.com/OM2/udi.ashx
