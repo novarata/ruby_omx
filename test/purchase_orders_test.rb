@@ -17,6 +17,8 @@ class PurchaseOrdersTest < MiniTest::Unit::TestCase
     assert_equal 2, request.line_items.length
     assert_equal @line1[:item_code], request.line_items[0].item_code
     assert_equal @line2[:item_code], request.line_items[1].item_code
+    assert_equal 'True', request.line_items[0].cancel_line
+    assert_equal 'True', request.line_items[1].cancel_line
   
     assert_equal 'UDIAuthToken', request.udi_parameters[0].key
     assert_equal @config['udi_auth_token'], request.udi_parameters[0].value

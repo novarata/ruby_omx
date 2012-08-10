@@ -59,6 +59,16 @@ module RubyOmx
     xml_accessor :quantity, :as => Integer
     xml_accessor :unit_price, :as => Float
     xml_accessor :price, :as => Float
-  end  
+    xml_accessor :cancel_line
+  end
+
+  class ErrorData < Response
+    xml_name 'Error'
+    xml_accessor :error_id, :from=>'@errorID'
+    xml_accessor :error_severity, :from=>'@errorSeverity'
+    xml_accessor :error_detail_0, :from=>'@errorDetail0'
+    xml_accessor :error_detail_1, :from=>'@errorDetail1'
+    xml_accessor :message, :from=>:content
+  end
 
 end
