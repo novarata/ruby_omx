@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OrderInformationRequest version="1.00">
     <UDIParameter>
+				<Parameter key="UDIAuthToken">470db4004809083c0048ef983</Parameter>
         <Parameter key="HTTPBizID">TestHTTPBizID0123456789</Parameter>
         <Parameter key="OrderNumber">16651</Parameter>
         <Parameter key="level">2</Parameter>

@@ -194,6 +194,7 @@ class OrdersTest < MiniTest::Unit::TestCase
 		assert !response.accessors.include?("code")
 
     assert_equal DateTime.parse('2006-02-09 14:47:00'), response.ship_date
+    assert_equal '11229', response.customer_number
     assert_equal "", response.tracking_number
     assert_equal '16651', response.order_header.order_number
     assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_header.order_date
@@ -224,7 +225,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal DateTime.parse('2010-05-31 05:36:00'), response.order_header.order_status_date
     assert_equal '4', response.order_header.order_status_code
 
-    
+    assert_equal '11552', response.customer_number
     assert_equal 2, response.line_items.length
     assert_equal '24603-0', response.line_items[0].shipment_number
     assert_equal 10, response.line_items[0].line_cogs

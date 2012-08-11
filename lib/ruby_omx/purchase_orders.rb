@@ -1,8 +1,6 @@
 module RubyOmx
   module PurchaseOrders
     
-    # Universal Direct Order Appending (UDOA)
-    
     def build_purchase_order_update_request(params={})
 		  PurchaseOrderUpdateRequest.new(params.merge({:udi_auth_token=>@udi_auth_token, :http_biz_id=>@http_biz_id}))
 		end

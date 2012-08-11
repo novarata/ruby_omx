@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="AssignTo">
+		<xs:annotation>
+			<xs:documentation>This specifies a username to assign the memo to. For the assignment to be effective, the value provided must match a user in the account.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="255"></xs:maxLength>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CustomerNumber" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>This field will be used to select the Customer to assign to, if none of the more specificc fields (ShipmentTransmissionReference, ShipmentNumber, OrderNumber, LeadNumber) are provided.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Memo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CustomerNumber" minOccurs="0"></xs:element>
+				<xs:element ref="ShipmentTransmissionReference" minOccurs="0"></xs:element>
+				<xs:element ref="ShipmentNumber" minOccurs="0"></xs:element>
+				<xs:element ref="OrderNumber" minOccurs="0"></xs:element>
+				<xs:element ref="LeadNumber" minOccurs="0"></xs:element>
+				<xs:element ref="ReminderDate" minOccurs="0"></xs:element>
+				<xs:element ref="AssignTo" minOccurs="0"></xs:element>
+				<xs:element ref="SubAgent" minOccurs="0"></xs:element>
+				<xs:element ref="MemoType" minOccurs="0"></xs:element>
+				<xs:element ref="MemoText"></xs:element>
+				<xs:element ref="Read" minOccurs="0"></xs:element>
+				<xs:element ref="MemoTransmissionReference" minOccurs="0"></xs:element>
+				<xs:element ref="MemoTransmissionDate" minOccurs="0"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MemoSubmissionRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UDIParameter"></xs:element>
+				<xs:element ref="Memo" maxOccurs="unbounded"></xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1.00"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MemoText">
+		<xs:annotation>
+			<xs:documentation>The text of the memo to be saved.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10000"></xs:maxLength>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MemoTransmissionReference">
+		<xs:annotation>
+			<xs:documentation>This is a three-part reference describing the shipment transmission, OrderNumber-ShipmentID-TransmissionID; eg "10001-1-1".</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"></xs:maxLength>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MemoType" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>This field allows for account specific classification of Memos; Values/mappings should be obtained from the client.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Parameter">
+		<xs:annotation>
+			<xs:documentation>There are no Parameters specific to this request (see general documentation on UDI Parameters).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="key" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="HTTPBizID"></xs:enumeration>
+						<xs:enumeration value="UDIAuthToken"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Read" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>This allows you to specify whether the memo should be automatically set to "Read".</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OrderNumber" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>If OrderNumber is provided, CustomerNumber does not need to be provided and will be ignored if provided.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LeadNumber" type="xs:unsignedInt">
+		<xs:annotation>
+			<xs:documentation>If LeadNumber is provided, CustomerNumber does not need to be provided and will be ignored if provided.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReminderDate">
+		<xs:annotation>
+			<xs:documentation>ReminderDate must be future date.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="OMDate"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="MemoTransmissionDate">
+		<xs:simpleType>
+			<xs:restriction base="OMDate"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ShipmentNumber">
+		<xs:annotation>
+			<xs:documentation>ShipmentNumber format: OrderNumber-ShipmentID.
+
+If ShipmentNumber is provided, neither OrderNumber nor CustomerNumber need to be provided and if they are, they will be ignored.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"></xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ShipmentTransmissionReference" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>If ShipmentTransmission is provided, CustomerNumber, ShipmentNumber and OrderNumber do not need to be provided and will be ignored.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SubAgent">
+		<xs:annotation>
+			<xs:documentation>If verify is set True, and code is not blank, OM will validate subAgent code.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="code" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="testSub"></xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="verify" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean"></xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UDIParameter">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Parameter"></xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="OMDate">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+Dates are almost the same as the W3C Schema "date" type, but with a space 
+instead of the "T" separating the date from the time.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d\d\d\d-\d\d-\d\d( \d\d:\d\d(:\d\d(\.\d\d\d)?)?)?)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

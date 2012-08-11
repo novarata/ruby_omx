@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MemoSubmissionRequest version="1.00">
+	<UDIParameter>
+		<Parameter key="UDIAuthToken">470db4004809083c0048ef983</Parameter>
+		<Parameter key="HTTPBizID">TestHTTPBizID0123456789</Parameter>
+	</UDIParameter>
+	<Memo>
+		<CustomerNumber>10094</CustomerNumber>
+		<OrderNumber>949538</OrderNumber>		
+		<ReminderDate>2003-04-01 22:15:10</ReminderDate>
+		<MemoTransmissionDate>2003-03-01 22:15:10</MemoTransmissionDate>
+		<MemoText>Test Memo</MemoText>
+	</Memo>
+</MemoSubmissionRequest>
