@@ -6,14 +6,39 @@ class ItemsTest < MiniTest::Unit::TestCase
 		@connection = RubyOmx::Base.new(@config)
   end
 
+  def test_item_info_request_from_xml
+    request = RubyOmx::ItemInfoRequest.format(xml_for('ItemInformationRequest(1.00)',200))
+    assert_equal '1.00', request.version
+    assert_equal 'ItemCode', request.udi_parameters.last.key
+    assert_equal '01-114', request.udi_parameters.last.value
+
+    request = RubyOmx::CustomItemInfoRequest.format(xml_for('CustomItemAttributeInformationRequest(2.00)',200))
+    assert_equal '2.00', request.version
+    
+    assert_equal 'AttributeGroupID', request.udi_parameters[3].key
+    assert_equal '5', request.udi_parameters[3].value
+    
+    assert_equal 'ItemCode', request.udi_parameters[2].key
+    assert_equal 'DANKITEM4-1', request.udi_parameters[2].value
+  end
+
+  def test_item_info_request_to_xml
+    request_attrs = { :item_code => '01-114' }
+    request = @connection.build_item_info_request(request_attrs)
+    request2 = RubyOmx::ItemInfoRequest.format(xml_for('ItemInformationRequest(1.00)',200))
+    assert_equal request.to_xml.to_s, request2.to_xml.to_s
+
+    request_attrs = { :item_code => 'DANKITEM4-1', :attribute_group_id=>'5' }
+    request = @connection.build_custom_item_info_request(request_attrs)
+    request2 = RubyOmx::CustomItemInfoRequest.format(xml_for('CustomItemAttributeInformationRequest(2.00)',200))
+    assert_equal request.to_xml.to_s, request2.to_xml.to_s
+  end
+    
   def test_get_item_information
     @connection.stubs(:post).returns(xml_for('ItemInformationResponse(1.00)',200))
-    begin
-      response = @connection.get_item_info()
-    rescue MissingItemOptions
-    end
-    
-    response = @connection.get_item_info(:item_code=>'01-114')
+    response = @connection.get_item_info() rescue MissingRequestOptions
+
+    response = @connection.get_item_info({:item_code=>'01-114'})
     assert_equal '01-114', response.item_code
     assert_equal 'True', response.active
     assert_equal 'Driver', response.product_name
@@ -28,29 +53,61 @@ class ItemsTest < MiniTest::Unit::TestCase
     assert_equal 6, response.custom_attributes.length
     assert_equal "1", response.custom_attributes.first.attribute_id
     assert_equal "MYAttribute1", response.custom_attributes.first.value
-    
     assert_kind_of Hash, response.as_hash
   end
   
   def test_get_custom_item_attribute_information
-    @connection.stubs(:post).returns(xml_for('CustomItemAttributeInformationResponse(1.00)',200))
-    begin
-      response = @connection.get_custom_item_attribute_info()
-    rescue MissingItemOptions
-    end
+    @connection.stubs(:post).returns(xml_for('CustomItemAttributeInformationResponse(2.00)',200))
+    response = @connection.get_custom_item_info() rescue MissingRequestOptions
     
-    response = @connection.get_custom_item_attribute_info(:item_code=>'00001')
+    response = @connection.get_custom_item_info(:item_code=>'00001')
     assert_kind_of Hash, response.as_hash
     assert_equal '1', response.success
     i = response.items.first
-    assert_equal '10100', i.item_code
+    assert_equal '00001', i.item_code
     assert_equal 'True', i.active
-    i_attrs = i.attributes
-    assert_equal 20, i_attrs.length
-    assert_equal '1', i_attrs.first.attribute_id
-    assert_equal 'Keycode', i_attrs.first.name
-    
+    i_attrs = i.attribute_groups.first.attributes
+    assert_equal 1, i_attrs.length
+    assert_equal '3', i_attrs.first.attribute_id
+    assert_equal 'otrofield', i_attrs.first.name
     assert_kind_of Hash, response.as_hash
+  end
+  
+
+  def test_item_update_request_from_xml
+    request = RubyOmx::ItemUpdateRequest.format(xml_for('ItemUpdateRequest(2.00)',200))
+    assert_equal '2.00', request.version
+    assert_equal 1, request.items.length
+    item = request.items.first
+    assert_equal 'APPLE', item.item_code
+  end
+
+  def test_item_update_request_to_xml    
+
+    request_attrs = {:items=> [{
+      :item_code => 'APPLE',
+      :product_status=>'True', 
+      :incomplete_flag=>'False',
+  		:product_name=>'Apple Product', 
+  		:product_group=>45, 
+  		:cost_of_goods=>10, 
+  		:upc_code=>'234234234',	
+  		:allow_order_line_info=>'True', 
+  		:launch_date=>'2/23/2006', 
+  		:file_sub_code=>20,
+  		:inventory_product_flag=>'True', 
+  		:tax_code=>'TC4', 
+  		:inventory_type=>3 }]}
+
+    
+    request = @connection.build_item_update_request(request_attrs)
+    assert_instance_of String, request.to_xml.to_s
+    
+    @connection.stubs(:post).returns(xml_for('ItemUpdateResponse(2.00)',200))
+    response = @connection.append_item rescue MissingRequestOptions
+
+    response = @connection.append_item(request_attrs)
+    assert_equal '1', response.success
   end
   
 end

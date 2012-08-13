@@ -165,7 +165,7 @@ class OrdersTest < MiniTest::Unit::TestCase
   	# Missing Order Options
   	begin
   	  response = @connection.send_udoa_request(order_data)
-  	rescue MissingOrderOptions
+  	rescue MissingRequestOptions
   	end
     
     order_data[:line_items][0].merge!({ :item_code => 'SKU' })
@@ -190,14 +190,13 @@ class OrdersTest < MiniTest::Unit::TestCase
   def test_send_info_request1
   	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(1.00)',200))
 		response = @connection.send_info_request({ :order_number => '16651' })
-		assert_kind_of OrderInformationResponse, response
-		assert !response.accessors.include?("code")
+		assert_kind_of OrderInfoResponse, response
 
     assert_equal DateTime.parse('2006-02-09 14:47:00'), response.ship_date
     assert_equal '11229', response.customer_number
     assert_equal "", response.tracking_number
-    assert_equal '16651', response.order_header.order_number
-    assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_header.order_date
+    assert_equal '16651', response.order_number
+    assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_date
     assert_equal 1, response.line_items.length
     assert_equal '16651-1', response.line_items[0].shipment_number
     assert_equal 6.52, response.line_items[0].line_cogs
@@ -214,16 +213,16 @@ class OrdersTest < MiniTest::Unit::TestCase
   def test_send_info_request2
   	@connection_alt.stubs(:post).returns(xml_for('OrderInformationResponse(2.00)',200))
 		response = @connection_alt.send_info_request({ :order_number => '24603', :version=>'2.00' })
-		assert_kind_of OrderInformationResponse, response
+		assert_kind_of OrderInfoResponse, response
 
     assert_nil response.ship_date
     assert_equal "", response.tracking_number
 
-    assert_nil response.order_header.order_id    
-    assert_equal '24603', response.order_header.order_number
-    assert_equal DateTime.parse('2003-04-01 22:15:00'), response.order_header.order_date
-    assert_equal DateTime.parse('2010-05-31 05:36:00'), response.order_header.order_status_date
-    assert_equal '4', response.order_header.order_status_code
+    assert_nil response.order_id    
+    assert_equal '24603', response.order_number
+    assert_equal DateTime.parse('2003-04-01 22:15:00'), response.order_date
+    assert_equal DateTime.parse('2010-05-31 05:36:00'), response.order_status_date
+    assert_equal '4', response.order_status_code
 
     assert_equal '11552', response.customer_number
     assert_equal 2, response.line_items.length
@@ -242,7 +241,7 @@ class OrdersTest < MiniTest::Unit::TestCase
 		assert_kind_of Hash, response.as_hash
 		
 		response = @connection_alt.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01', :version=>'2.00' })
-		assert_kind_of OrderInformationResponse, response
+		assert_kind_of OrderInfoResponse, response
   end
   
   def test_send_smart_report_request

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomItemAttributeInformationRequest version="2.00">
+  <UDIParameter>
+		<Parameter key="UDIAuthToken">470db4004809083c0048ef983</Parameter>
+    <Parameter key="HTTPBizID">KbmCrvnuTESTINGTESTINGYBlggjNYxGqsujuglguAJhXeKBYD</Parameter>	
+    <Parameter key="ItemCode">DANKITEM4-1</Parameter>
+    <Parameter key="AttributeGroupID">5</Parameter>
+  </UDIParameter>
+  <Items>
+    <Item itemCode="DANKITEM4-1" />
+  </Items>
+</CustomItemAttributeInformationRequest>

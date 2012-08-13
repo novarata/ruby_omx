@@ -5,7 +5,7 @@ module RubyOmx
   class MemoSubmissionResponse < Response
     xml_name "MemoSubmissionResponse"
     xml_reader :success
-    xml_accessor :errors, :as=>[RubyOmx::ErrorData], :in=>'ErrorData'
+		xml_accessor :errors, :as=>[Error], :in=>'ErrorData'
   end
     
 end

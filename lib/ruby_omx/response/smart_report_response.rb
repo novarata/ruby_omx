@@ -1,12 +1,12 @@
 module RubyOmx
 
-  class SmartReportField < Response
+  class SmartReportField < Node
     xml_name "Field"
     xml_reader :id, :from=>'@fieldID'
     xml_reader :value, :from=>:content
   end
   
-  class SmartReportRow < Response
+  class SmartReportRow < Node
     xml_name "Row"
     xml_reader :fields, :as=>[SmartReportField]
     #1 Order Number

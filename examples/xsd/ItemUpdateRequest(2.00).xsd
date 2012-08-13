@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="AccountingReference">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="AllowOrderLineInfo" type="xs:boolean"/>
+  <xs:element name="AutoShipFlag" type="xs:boolean"/>
+  <xs:element name="CostOfGoods" type="xs:decimal"/>
+  <xs:element name="CustomsTariff">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Depth" type="xs:decimal">
+    <xs:annotation>
+      <xs:documentation>Depth: 0 -999</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="DimensionX">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="120"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="DimensionY">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="120"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="DimensionZ">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="120"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="FileSubCode" type="xs:string"/>
+  <xs:element name="FulfillmentInstructions">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="50000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Height">
+    <xs:annotation>
+      <xs:documentation>Height: 0 -999</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"/>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ISBNNumber">
+    <xs:annotation>
+      <xs:documentation>ISBNNumber: either blank string or 13 characters</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="13"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="InfoTextHTML">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="50000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="InventoryManager">
+    <xs:simpleType>
+      <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="InventoryProductFlag" type="xs:boolean"/>
+  <xs:element name="InventoryThreshhold" type="xs:decimal"/>
+  <xs:element name="InventoryThreshholdQty" type="xs:unsignedInt"/>
+  <xs:element name="InventoryWarningLOI" type="xs:boolean"/>
+  <xs:element name="InventoryWarningOOI" type="xs:boolean"/>
+  <xs:element name="WarehouseReference">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="50"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ItemCode">
+          <xs:annotation>
+            <xs:documentation>Always required</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ProductStatus">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="IncompleteFlag">
+          <xs:annotation>
+            <xs:documentation>Not required</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ProductName">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="ProductGroup">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="CostOfGoods"/>
+        <xs:element ref="RoyaltyPercent"/>
+        <xs:element ref="OriginCountry">
+          <xs:annotation>
+            <xs:documentation>If blank leave blank and update to blank, if null leave null and don't update</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="CustomsTariff"/>
+        <xs:element ref="Weight"/>
+        <xs:element ref="Width"/>
+        <xs:element ref="Height"/>
+        <xs:element ref="Depth"/>
+        <xs:element ref="ProductDuration"/>
+        <xs:element ref="ProductDurationUnit"/>
+        <xs:element ref="UPCCode"/>
+        <xs:element ref="ISBNNumber">
+          <xs:annotation>
+            <xs:documentation>If blank leave blank and update to blank, if null leave null and don't update</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="AccountingReference"/>
+        <xs:element ref="AllowOrderLineInfo"/>
+        <xs:element ref="OrderLineInfoLabel"/>
+        <xs:element ref="LaunchDate">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="InfoTextHTML"/>
+        <xs:element ref="AutoShipFlag"/>
+        <xs:element ref="FileSubCode">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="OrderSplitFlag"/>
+        <xs:element ref="ShipAloneFlag"/>
+        <xs:element ref="OversizeFlag"/>
+        <xs:element ref="PickZone" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Only for creating a new item, this will create primary location.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="PickAisle" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Only for creating a new item, this will create primary location.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="PickShelf" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Only for creating a new item, this will create primary location.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="PickLocation" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Only for creating a new item, this will create primary location.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="PickBin" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Only for creating a new item, this will create primary location.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="FulfillmentInstructions"/>
+        <xs:element ref="InventoryProductFlag">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="InventoryManager"/>
+        <xs:element ref="NextExpectedDeliveryDate">
+          <xs:annotation>
+            <xs:documentation>If blank remove date value, if null don't update (optional field)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="InventoryWarningOOI"/>
+        <xs:element ref="InventoryWarningLOI"/>
+        <xs:element ref="InventoryThreshholdQty"/>
+        <xs:element ref="InventoryThreshhold"/>
+        <xs:element ref="TaxCode">
+          <xs:annotation>
+            <xs:documentation>Required when new item</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="DimensionX"/>
+        <xs:element ref="DimensionY"/>
+        <xs:element ref="DimensionZ"/>
+        <xs:element ref="ShippingWeight" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>If blank remove value, if null don't update (optional field)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="WarehouseReference"/>
+        <xs:element ref="ItemType"/>
+        <xs:element ref="UnitOfMeasure"/>
+        <xs:element ref="ImageURL"/>
+        <xs:element ref="ImageURLThumbnail"/>
+        <xs:element ref="ImageFile"/>
+        <xs:element ref="ImageWidth"/>
+        <xs:element ref="ImageHeight"/>
+        <xs:element ref="ImageType"/>
+        <xs:element ref="ImageSize"/>
+        <xs:element ref="DiscountPercent"/>
+        <xs:element ref="WaitDate">
+          <xs:annotation>
+            <xs:documentation>If blank remove date value, if null don't update (optional field)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="InventoryType">
+          <xs:annotation>
+            <xs:documentation>
+              0 Non-Inventory (InventoryProductFlag = 0)
+              1 Warehouse Inventory (InventoryProductFlag = 1)
+              2 Drop Ship Inventory (InventoryProductFlag = 0)
+              3 SmartSwitch (first warehouse, then drop ship) (InventoryProductFlag = 1)
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="BundleDetails" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>If empty node removes all Bundles and MK of the item (optional field)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemCode">
+    <!--always non-optional -->
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="2"/>
+        <xs:maxLength value="50"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Parameter">
+    <xs:annotation>
+      <xs:documentation>
+        HTTPBizID (required) - This identifies the OrderMotion account, and is normally 255 characters in length.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:attribute name="key" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="HTTPBizID"/>
+            <xs:enumeration value="DeleteRecord"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UDIParameter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Parameter">
+          <xs:annotation>
+            <xs:documentation>
+              HTTPBizID (required) - This identifies the OrderMotion account, and is normally 255 characters in length.
+
+              If DeleteRecord is True, OM will try to delete items.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemUpdateRequest">
+    <xs:annotation>
+      <xs:documentation>
+        ItemUpdateRequest 2.00 (OM Release 9.1)
+
+        This command enables you to update item information with optional column updates feature.
+
+        Fields:
+        Always required:
+        -ItemCode
+        Required when new item:
+        - ProductStatus
+        - ProductName
+        - ProductGroup
+        - TaxCode
+        - FileSubCode
+        - InventoryProductFlag
+        - LaunchDate
+
+        All other fields optional.
+
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="UDIParameter"/>
+        <xs:element ref="Items"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1.00"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Item" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LaunchDate" type="OMDate"/>
+  <xs:element name="NextExpectedDeliveryDate" type="OMDate"/>
+  <xs:element name="OrderLineInfoLabel">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="50"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="OrderSplitFlag" type="xs:boolean"/>
+  <xs:element name="OriginCountry">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="2"/>
+        <xs:maxLength value="2"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="OversizeFlag" type="xs:boolean"/>
+  <xs:element name="PickAisle">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PickLocation">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PickBin">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PickShelf">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PickZone">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="20"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ProductDuration" type="xs:decimal"/>
+  <xs:element name="ProductDurationUnit" type="xs:decimal">
+    <xs:annotation>
+      <xs:documentation>ProductDuration: 0- 999</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ProductGroup">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="[1-9]\d*"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ProductName">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="1"/>
+        <xs:maxLength value="200"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ProductStatus" type="xs:boolean"/>
+  <xs:element name="IncompleteFlag" type="xs:boolean"/>
+  <xs:element name="RoyaltyPercent" type="xs:decimal">
+    <xs:annotation>
+      <xs:documentation>RoyaltyPercent: 0-100</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ShipAloneFlag" type="xs:boolean"/>
+  <xs:element name="TaxCode">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="15"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="UPCCode">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:maxLength value="15"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Weight" type="xs:decimal"/>
+  <xs:element name="ShippingWeight" type="xs:decimal"/>
+  <xs:element name="Width" type="xs:decimal">
+    <xs:annotation>
+      <xs:documentation>Width: 0 -999</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ItemType">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:pattern value="[1-2]\d*"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="UnitOfMeasure">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="10"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageURL">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageURLThumbnail">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="255"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageFile">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="30"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageWidth">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="10000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageHeight">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="10000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageType">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="50"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ImageSize">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="10000000"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="DiscountPercent">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="100"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="WaitDate" type="OMDate"/>
+  <xs:element name="InventoryType">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+        <xs:maxInclusive value="3"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="DropShipReference">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="50"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="DropShipFileSubCode">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="0"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="WarehouseReturnLocation">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="100"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="DropShipReturnLocation">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:minLength value="0"/>
+        <xs:maxLength value="100"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="BundleDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="BundleItem" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Quantity">
+                <xs:complexType>
+                  <xs:attribute name="multiplier" type="xs:boolean"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Returnable" type="xs:boolean" minOccurs="0"/>
+              <xs:element name="EnableShipDoc" type="xs:boolean" minOccurs="0"/>
+              <xs:element name="EnablePickDoc" type="xs:boolean" minOccurs="0"/>
+              <xs:element name="Price" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="type">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Bundle"/>
+                  <xs:enumeration value="Marketing Kit"/>
+                  <xs:enumeration value="MarketingKit"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="itemCode">
+              <xs:simpleType>
+                <xs:restriction base="xs:string"/>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="OMDate">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">
+        Dates are almost the same as the W3C Schema "date" type, but with a space
+        instead of the "T" separating the date from the time.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(\d\d\d\d-\d\d-\d\d( \d\d:\d\d(:\d\d(\.\d\d\d)?)?)?)?"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

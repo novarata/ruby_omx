@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="ErrorData">
+		<xs:annotation>
+			<xs:documentation>If Success = 0 then the ErrorData element will be displayed</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Error" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Error">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ItemUpdateResponse">
+		<xs:annotation>
+			<xs:documentation>ItemUpdateResponseVersion 2.00</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ErrorData" minOccurs="0"/>
+				<xs:element ref="Success"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Items">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="Success">
+		<xs:annotation>
+			<xs:documentation>A value of 0 indicates an invalid request, 1 indicates a successful request.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="1"/>
+				<xs:enumeration value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

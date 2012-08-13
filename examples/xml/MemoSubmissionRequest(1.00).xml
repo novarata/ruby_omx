@@ -2,7 +2,7 @@
 <MemoSubmissionRequest version="1.00">
 	<UDIParameter>
 		<Parameter key="UDIAuthToken">470db4004809083c0048ef983</Parameter>
-		<Parameter key="HTTPBizID">TestHTTPBizID0123456789</Parameter>
+    <Parameter key="HTTPBizID">KbmCrvnuTESTINGTESTINGYBlggjNYxGqsujuglguAJhXeKBYD</Parameter>
 	</UDIParameter>
 	<Memo>
 		<CustomerNumber>10094</CustomerNumber>

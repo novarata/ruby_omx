@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ItemUpdateRequest version="2.00">
+	<Items>
+		<Item>
+			<ItemCode>APPLE</ItemCode>
+      <ProductStatus>True</ProductStatus>
+      <IncompleteFlag>True</IncompleteFlag>
+			<ProductName>Deluxe Princess Fiona™ Child</ProductName>
+			<ProductGroup>45</ProductGroup>
+			<CostOfGoods>10</CostOfGoods>
+			<RoyaltyPercent>0</RoyaltyPercent>
+			<OriginCountry>BR</OriginCountry>
+			<CustomsTariff></CustomsTariff>
+			<Weight>0</Weight>
+			<Width>19.6</Width>
+			<Height>3.5</Height>
+			<Depth>35.4</Depth>
+			<ProductDuration>0</ProductDuration>
+			<ProductDurationUnit>0</ProductDurationUnit>
+			<UPCCode></UPCCode>
+			<ISBNNumber></ISBNNumber>
+			<AccountingReference></AccountingReference>
+			<AllowOrderLineInfo>True</AllowOrderLineInfo>
+			<OrderLineInfoLabel>What type of Apple</OrderLineInfoLabel>
+			<LaunchDate>2/23/2006</LaunchDate>
+			<InfoText></InfoText>
+			<InfoTextHTML>This is Newton's apple</InfoTextHTML>
+			<AutoShipFlag>False</AutoShipFlag>
+			<FileSubCode>20</FileSubCode>
+			<OrderSplitFlag>False</OrderSplitFlag>
+			<ShipAloneFlag>False</ShipAloneFlag>
+			<OversizeFlag>False</OversizeFlag>
+			<PickZone></PickZone>
+			<PickAisle></PickAisle>
+			<PickShelf></PickShelf>
+			<PickBin></PickBin>
+			<FulfillmentInstructions></FulfillmentInstructions>
+			<InventoryProductFlag>True</InventoryProductFlag>
+			<InventoryManager></InventoryManager>
+			<NextExpectedDeliveryDate></NextExpectedDeliveryDate>
+			<InventoryWarningOOI>False</InventoryWarningOOI>
+			<InventoryWarningLOI>False</InventoryWarningLOI>
+			<InventoryThreshholdQty></InventoryThreshholdQty>
+			<InventoryThreshhold></InventoryThreshhold>
+			<TaxCode>TC4</TaxCode>
+			<DimensionX>size</DimensionX>
+			<DimensionY>color</DimensionY>
+			<DimensionZ></DimensionZ>
+			<ShippingWeight>0</ShippingWeight>
+			<WarehouseReference></WarehouseReference>
+			<ItemType>1</ItemType>
+			<UnitOfMeasure>bag</UnitOfMeasure>
+			<ImageURL>www.yahoo.com</ImageURL>
+			<ImageURLThumbnail></ImageURLThumbnail>
+			<ImageFile></ImageFile>
+			<ImageWidth>0</ImageWidth>
+			<ImageHeight>0</ImageHeight>
+			<ImageType></ImageType>
+			<ImageSize>0</ImageSize>
+			<DiscountPercent>0</DiscountPercent>
+			<WaitDate></WaitDate>
+			<InventoryType>3</InventoryType>
+			<DropShipReference>ref 2</DropShipReference>
+			<DropShipFileSubCode>31</DropShipFileSubCode>
+			<WarehouseReturnLocation>Z1-A2-S3-L4</WarehouseReturnLocation>
+			<DropShipReturnLocation>Z1-AA-S2-L1111</DropShipReturnLocation>
+      <BundleDetails>
+        <BundleItem type="Bundle" itemCode="Item1">
+          <Quantity multiplier="True">1</Quantity>
+          <EnableShipDoc>True</EnableShipDoc>
+          <EnablePickDoc>True</EnablePickDoc>
+        </BundleItem>
+        <BundleItem type="MarketingKit" itemCode="Item2">
+          <Quantity>1</Quantity>
+          <EnableShipDoc>True</EnableShipDoc>
+          <EnablePickDoc>True</EnablePickDoc>
+          <Price>1.00</Price>
+        </BundleItem>
+      </BundleDetails>
+		</Item>
+	</Items>
+</ItemUpdateRequest>

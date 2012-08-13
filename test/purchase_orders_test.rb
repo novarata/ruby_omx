@@ -23,17 +23,12 @@ class PurchaseOrdersTest < MiniTest::Unit::TestCase
     assert_equal 'UDIAuthToken', request.udi_parameters[0].key
     assert_equal @config['udi_auth_token'], request.udi_parameters[0].value
   end
-  
+    
   def test_send_purchase_order_update_request
   	@connection.stubs(:post).returns(xml_for('PurchaseOrderUpdateResponse(1.00)',200))
-  	request = PurchaseOrderUpdateRequest.new
   	
-  	# TODO why is this necessary
-  	l1 = RubyOmx::LineItem.new(:item_code=>'WATCH-1', :quantity=>1, :price=>122.50)
-  	l2 = RubyOmx::LineItem.new(:item_code=>'APPLE-12', :quantity=>31, :price=>1.50)
-  	
-  	po_data = { :po_number => '16651',
-                :line_items => [l1, l2],
+  	po_data = { :po_number => '16651', # actually would not have both po number and supplier id
+                :line_items => [@line1, @line2],
                 :supplier_id => '76'
               }
 	  r = @connection.build_purchase_order_update_request(po_data)
@@ -42,7 +37,7 @@ class PurchaseOrdersTest < MiniTest::Unit::TestCase
   	# Missing Order Options
   	begin
   	  response = @connection.send_purchase_order_update_request({})
-  	rescue MissingPurchaseOrderOptions
+  	rescue MissingRequestOptions
   	end
   
   	response = @connection.send_purchase_order_update_request(po_data)
@@ -61,4 +56,5 @@ class PurchaseOrdersTest < MiniTest::Unit::TestCase
   	assert_kind_of PurchaseOrderUpdateResponse, response
   	assert_equal '16651', response.po_number
   end
+
 end

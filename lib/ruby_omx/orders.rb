@@ -3,37 +3,37 @@ module RubyOmx
     
     # Universal Direct Order Appending (UDOA)
     
-    def build_udoa_request(params={})
-		  UDOARequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+    def build_udoa_request(attrs={})
+		  UDOARequest.new(attrs.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
 		end
 		
-		def send_udoa_request(params={})
-		  request = build_udoa_request(params)
+		def send_udoa_request(attrs={})
+		  request = build_udoa_request(attrs)
       response = post(request.to_xml.to_s)
       return response if request.raw_xml==true || request.raw_xml==1
-      UDOAResponse.format(response)		  
+      UDOAResponse.format(response)
 		end
 		alias_method :append_order, :send_udoa_request
 		
 
 		# Order Information
 		
-		def build_info_request(params={})
-	    OrderInformationRequest.new(params.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+		def build_info_request(attrs={})
+	    OrderInfoRequest.new(attrs.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
 		end
 
-    def send_info_request(params={})
-		  request = build_info_request(params)
+    def send_info_request(attrs={})
+	    @connection = RubyOmx::Connection.connect({ "http_biz_id" => @http_biz_id, "udi_auth_token" => @udi_auth_token, "server"=>ALT_HOST })
+		  request = build_info_request(attrs)
       response = post(request.to_xml.to_s)
       return response if request.raw_xml==true || request.raw_xml==1
-      OrderInformationResponse.format(response)
+      OrderInfoResponse.format(response)
     end
 
 
     # Smart Report Information
-
-    def send_smart_report_request(params={})
-      schedule_id = params[:schedule_id] ||= 1
+    def send_smart_report_request(attrs={})
+      schedule_id = attrs[:schedule_id] ||= 1
       response = get("https://omx.ordermotion.com/en/net/SmartReports.aspx?HTTPBizID=#{@http_biz_id}&ScheduleID=#{schedule_id}")
       SmartReportResponse.format(response)
     end

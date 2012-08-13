@@ -2,9 +2,7 @@ module RubyOmx
      
   class Connection
 
-    def self.connect(options = {})
-      new(options)
-    end
+    def self.connect(options = {}); new(options) end
       
     def initialize(params = {})
       
@@ -26,7 +24,7 @@ module RubyOmx
       http.verify_mode 	= OpenSSL::SSL::VERIFY_NONE
       return http
     end
-      
+
     # Make the request, based on the appropriate request object
     # Called from RubyOmx::Base
     def request(verb, body = nil, attempts = 0, &block)
@@ -40,7 +38,7 @@ module RubyOmx
       @http = connect
       attempts == 3 ? raise : (attempts += 1; retry)
     end
-     
+
   end
 end
 
