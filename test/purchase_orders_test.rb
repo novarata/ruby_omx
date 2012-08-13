@@ -28,6 +28,7 @@ class PurchaseOrdersTest < MiniTest::Unit::TestCase
   	@connection.stubs(:post).returns(xml_for('PurchaseOrderUpdateResponse(1.00)',200))
   	
   	po_data = { :po_number => '16651', # actually would not have both po number and supplier id
+                :cross_reference => 'PurchaseOrder 3432',
                 :line_items => [@line1, @line2],
                 :supplier_id => '76'
               }

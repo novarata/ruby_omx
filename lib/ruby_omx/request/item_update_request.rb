@@ -16,7 +16,10 @@ module RubyOmx
 		xml_accessor :tax_code #<TaxCode>TC4</TaxCode>
 		xml_accessor :inventory_type, :as=>Integer # <InventoryType>3</InventoryType>    
     xml_accessor :drop_ship_file_sub_code, :as=>Integer #<DropShipFileSubCode>31</DropShipFileSubCode>
-		
+    xml_accessor :order_split_flag #<OrderSplitFlag>False</OrderSplitFlag>		
+    xml_accessor :inventory_manager
+    xml_accessor :inventory_warning_ooi, :from=>'InventoryWarningOOI' #<InventoryWarningOOI>False</InventoryWarningOOI>
+		xml_accessor :inventory_warning_loi, :from=>'InventoryWarningLOI' #<InventoryWarningLOI>False</InventoryWarningLOI>		
   end
 
   class ItemUpdateRequest < Request

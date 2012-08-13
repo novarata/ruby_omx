@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Bonus" type="xs:unsignedInt">
+    <xs:annotation>
+      <xs:documentation>
+        The Quantity Bonus feature is only available using the Legacy pricing engine.
+        If account is setup to use new Pricing Engine and this value is not empty or is not "0" the UDI call will return an error.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+	<xs:element name="ItemPriceUpdateRequest">
+		<xs:annotation>
+			<xs:documentation>ItemPriceUpdateRequest 1.00
+
+This command enables you to update or insert Item Default Prices or Keycode Prices depending on the parameters.
+</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UDIParameter"/>
+				<xs:element ref="PricePoints"/>
+			</xs:sequence>
+			<xs:attribute name="version" use="required" fixed="1.00">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1.00"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Parameter">
+		<xs:annotation>
+			<xs:documentation>HTTPBizID (required) - This identifies the OrderMotion account, and is normally 255 characters in length.
+Type (required) - the value must be "Keycode" or "DefaultPrice", and if it is "Keycode", Keycode must be provided.
+
+Keycode (optional) 
+ItemCode (required)
+ExpiryDate (optional)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="key" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="HTTPBizID"/>
+						<xs:enumeration value="ItemCode"/>
+						<xs:enumeration value="Keycode"/>
+						<xs:enumeration value="Type"/>
+						<xs:enumeration value="ExpiryDate"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Price" type="xs:decimal"/>
+	<xs:element name="PricePoint">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Quantity"/>
+				<xs:element ref="Price"/>
+				<xs:element ref="ShippingHandling"/>
+				<xs:element ref="Bonus" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="multiplier" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PricePoints">
+		<xs:annotation>
+			<xs:documentation>priceType - "unit", or others for extended price type.
+
+quantityType - restricted</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PricePoint" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="priceType" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="unit"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="quantityType" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="restricted"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Quantity" type="xs:unsignedInt"/>
+	<xs:element name="ShippingHandling">
+		<xs:simpleType>
+			<xs:restriction base="xs:decimal"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="UDIParameter">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Parameter" minOccurs="2" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

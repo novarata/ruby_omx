@@ -55,5 +55,15 @@ module RubyOmx
     xml_reader :name, :from => '@name'
     xml_reader :value, :from => :content
   end
+
+  class StandardResponse < Response
+    xml_reader :success
+	  xml_reader :errors, :as=>[Error], :in=>'ErrorData'
+
+    def to_s
+      error_string = self.errors.collect{ |e| e.message.to_s }.join(',')
+      return "success: #{success}, errors: #{error_string}"
+    end
+  end
   
 end

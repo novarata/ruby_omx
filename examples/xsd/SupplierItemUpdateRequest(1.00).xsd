@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="SupplierItemUpdateRequest">
+		<xs:annotation>
+			<xs:documentation>Supplier Item Update 1.00 Request
+
+This command enables you to update supplier item information.
+
+For additional help please consult the OrderMotion help area.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UDIParameter">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Parameter" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="key" use="required">
+												<xs:annotation>
+													<xs:documentation>Available keys:
+
+HTTPBizID
+This is your OrderMotion account identifier, required for all requests. Contact OrderMotion support to obtain your id.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:enumeration value="HTTPBizID"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Item" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SupplierItemCode" type="xs:string" minOccurs="0"/>
+										<xs:element name="Description" type="xs:string" minOccurs="0"/>
+										<xs:element name="StandardPrice" type="xs:decimal" minOccurs="0"/>
+										<xs:element name="DeliveryLeadTimeDays" type="xs:integer" minOccurs="0"/>
+										<xs:element name="MinimumQuantity" type="xs:integer" minOccurs="0"/>
+										<xs:element name="UnitsPerPackage" type="xs:integer" minOccurs="0"/>
+										<xs:element name="PackageDescription" type="xs:string" minOccurs="0"/>
+									</xs:sequence>
+									<xs:attribute name="itemCode" type="xs:string" use="required"/>
+									<xs:attribute name="supplierID" type="xs:integer" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="required" fixed="1.00"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

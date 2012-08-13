@@ -14,11 +14,9 @@ module RubyOmx
     xml_reader :attribute_groups, :as=>[AttributeGroup]
   end
     
-  class CustomItemInfoResponse < Response
+  class CustomItemInfoResponse < StandardResponse
     xml_name "CustomItemAttributeInformationResponse"         
     xml_reader :items, :as => [CIAIResponseItem], :in => "Items"
-		xml_reader :success
-		xml_reader :errors, :as=>[Error], :in=>'ErrorData'
   end
     
 end

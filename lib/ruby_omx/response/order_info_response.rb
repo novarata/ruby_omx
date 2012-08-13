@@ -10,15 +10,6 @@ module RubyOmx
     xml_reader :value, :from => :content, :as=>Integer
   end
   
-  #class OrderInfoOrderHeader < Node
-  #  xml_name "OrderHeader"
-  #  xml_reader :order_id
-  #  xml_reader :order_number
-  #  xml_reader :order_status_code, :from => '@statusCode', :in=>'OrderStatus'
-  #  xml_reader :order_status_date, :as=>DateTime
-  #  xml_reader :order_date, :as=>DateTime
-  #end
-      
   class OrderInfoLineItem < Node
     xml_name "LineItem"
     xml_reader :item_code
@@ -47,9 +38,8 @@ module RubyOmx
     # 7 shipped?
   end
 
-  class OrderInfoResponse < Response
+  class OrderInfoResponse < StandardResponse
     xml_name "OrderInformationResponse"
-    xml_reader :success    
     
     xml_reader :order_id, :in=>'OrderHeader'
     xml_reader :order_number, :in=>'OrderHeader'
@@ -62,12 +52,6 @@ module RubyOmx
     xml_reader :customer_number, :from=>'@number', :in=>'Customer'
     xml_reader :tracking_number, :in=>'ShippingInformation/Shipment'
     xml_reader :ship_date, :in=>'ShippingInformation/Shipment',:as=>DateTime # if populated, it means all items have shipped
-		xml_reader :errors, :as=>[Error], :in=>'ErrorData'
-
-    def to_s
-      error_string = errors.collect { |e| e.to_s }.join(',')
-      "Status #{order_status_code} for order #{order_number} with errors #{error_string}"
-    end
   end
     
 end

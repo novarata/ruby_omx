@@ -97,7 +97,11 @@ class ItemsTest < MiniTest::Unit::TestCase
   		:file_sub_code=>20,
   		:inventory_product_flag=>'True', 
   		:tax_code=>'TC4', 
-  		:inventory_type=>3 }]}
+  		:inventory_type=>3,
+  		:order_split_flag=>'True',
+  		:drop_ship_file_sub_code=>31,
+  		:inventory_manager=>'blah'
+  		 }]}
 
     
     request = @connection.build_item_update_request(request_attrs)
@@ -107,6 +111,81 @@ class ItemsTest < MiniTest::Unit::TestCase
     response = @connection.append_item rescue MissingRequestOptions
 
     response = @connection.append_item(request_attrs)
+    assert_equal '1', response.success
+  end
+  
+  
+  def test_item_price_update_request_from_xml
+    request = RubyOmx::ItemPriceUpdateRequest.format(xml_for('ItemPriceUpdateRequest(1.00)',200))
+    assert_equal '1.00', request.version
+    assert_equal 'unit', request.price_type
+    assert_equal 'restricted', request.quantity_type
+    assert_equal 1, request.price_points.length
+    price_point = request.price_points.first
+    assert_equal 10, price_point.quantity
+    assert_equal 3.1415926535897932384626433832795, price_point.price
+  end
+  
+  def test_item_price_update_request_to_xml    
+
+    request_attrs = {
+      :item_code=>'03-0303',
+      :keycode=>'EVDE',
+      :type=>'Keycode',
+      :price_type=>'unit',
+      :quantity_type=>'restricted',
+      :price_points=>[{
+        :quantity => 1,
+        :price=>10.0,
+        :shipping_handling=>1.0
+  		 }]}
+    
+    request = @connection.build_item_price_update_request(request_attrs)
+    assert_instance_of String, request.to_xml.to_s
+    
+    @connection.stubs(:post).returns(xml_for('ItemPriceUpdateResponse(1.00)',200))
+    response = @connection.append_item_price rescue MissingRequestOptions
+
+    response = @connection.append_item_price(request_attrs)
+    assert_equal '1', response.success
+    assert_equal 'success: 1, errors: ', response.to_s
+  end  
+
+
+  def test_supplier_item_update_request_from_xml
+    request = RubyOmx::SupplierItemUpdateRequest.format(xml_for('SupplierItemUpdateRequest(1.00)',200))
+    assert_equal '1.00', request.version
+    assert_equal 1, request.items.length
+    item = request.items.first
+    assert_equal 11.22, item.standard_price
+    assert_equal 50, item.minimum_quantity
+    assert_equal "WID500a", item.item_code
+    assert_equal '1', item.supplier_id
+    assert_equal 2, item.units_per_package
+    assert_equal 'large box', item.package_description
+  end
+  
+  def test_supplier_item_update_request_to_xml    
+
+    request_attrs = {:items=>[{
+      :item_code=>'03-0303',
+      :supplier_id=>'76',
+      :supplier_item_code=>'03-0303',
+      :description=>'Description',
+      :standard_price=>10.5,
+      :delivery_lead_time_days=>5,
+      :minimum_quantity=>1,
+      :units_per_package=>1,
+      :package_description=>'Standard' }]
+    }
+    
+    request = @connection.build_supplier_item_update_request(request_attrs)
+    assert_instance_of String, request.to_xml.to_s
+    
+    @connection.stubs(:post).returns(xml_for('SupplierItemUpdateResponse(1.00)',200))
+    response = @connection.append_supplier_item rescue MissingRequestOptions
+
+    response = @connection.append_supplier_item(request_attrs)
     assert_equal '1', response.success
   end
   

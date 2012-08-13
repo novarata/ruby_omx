@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SupplierItemUpdateRequest version="1.00">
+	<UDIParameter>
+		<Parameter key="HTTPBizID">yourid</Parameter>
+	</UDIParameter>
+	<Items>
+		<Item itemCode="WID500a" supplierID="1">
+			<SupplierItemCode>C500-1</SupplierItemCode>
+			<Description>Sample Item</Description>
+			<StandardPrice>11.22</StandardPrice>
+			<DeliveryLeadTimeDays>10</DeliveryLeadTimeDays>
+			<MinimumQuantity>50</MinimumQuantity>
+			<UnitsPerPackage>2</UnitsPerPackage>
+			<PackageDescription>large box</PackageDescription>
+		</Item>
+	</Items>
+</SupplierItemUpdateRequest>

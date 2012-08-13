@@ -4,7 +4,7 @@ module RubyOmx
 
     def initialize(attrs={})
       return super unless attrs.any?
-      raise MissingRequestOptions if attrs[:po_number].nil? && attrs[:supplier_id].nil?
+      raise MissingRequestOptions if (attrs[:po_number].nil? && attrs[:supplier_id].nil?)
       super
       self.version = attrs[:version] ||= '1.00'
 

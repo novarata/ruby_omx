@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItemPriceUpdateRequest version="1.00">
+	<UDIParameter>
+		<Parameter key="HTTPBizID">TestHTTPBizID0123456789</Parameter>
+		<Parameter key="ItemCode">01-116</Parameter>
+		<Parameter key="Keycode">VDXTest</Parameter>
+		<Parameter key="Type">Keycode</Parameter>
+	</UDIParameter>
+	<PricePoints priceType="unit" quantityType="restricted">
+		<PricePoint multiplier="true">
+			<Quantity>10</Quantity>
+			<Price>3.1415926535897932384626433832795</Price>
+			<ShippingHandling>3.1415926535897932384626433832795</ShippingHandling>
+		</PricePoint>
+	</PricePoints>
+</ItemPriceUpdateRequest>
