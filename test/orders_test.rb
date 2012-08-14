@@ -189,7 +189,7 @@ class OrdersTest < MiniTest::Unit::TestCase
   
   def test_send_info_request1
   	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(1.00)',200))
-		response = @connection.send_info_request({ :order_number => '16651' })
+		response = @connection.send_info_request({ :order_number => '16651', :version=>'1.00' })
 		assert_kind_of OrderInfoResponse, response
 
     assert_equal DateTime.parse('2006-02-09 14:47:00'), response.ship_date
@@ -212,7 +212,7 @@ class OrdersTest < MiniTest::Unit::TestCase
 
   def test_send_info_request2
   	@connection_alt.stubs(:post).returns(xml_for('OrderInformationResponse(2.00)',200))
-		response = @connection_alt.send_info_request({ :order_number => '24603', :version=>'2.00' })
+		response = @connection_alt.send_info_request({ :order_number => '24603' })
 		assert_kind_of OrderInfoResponse, response
 
     assert_nil response.ship_date
@@ -240,7 +240,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal '5/31/2010 5:36:00 AM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
 		
-		response = @connection_alt.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01', :version=>'2.00' })
+		response = @connection_alt.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01' })
 		assert_kind_of OrderInfoResponse, response
   end
   

@@ -52,6 +52,10 @@ module RubyOmx
     xml_reader :customer_number, :from=>'@number', :in=>'Customer'
     xml_reader :tracking_number, :in=>'ShippingInformation/Shipment'
     xml_reader :ship_date, :in=>'ShippingInformation/Shipment',:as=>DateTime # if populated, it means all items have shipped
+
+    def to_s
+      "#{super} #{order_id} #{order_number} #{order_status_code} #{order_status_date} #{line_items.length} #{customer_number}"
+    end
   end
     
 end
