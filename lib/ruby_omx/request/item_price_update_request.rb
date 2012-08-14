@@ -12,13 +12,13 @@ module RubyOmx
 
     def initialize(attrs={})
       return super unless attrs.any?
-      required_fields = [:item_code, :keycode, :type] #:item_code, :product_status, :product_name, :product_group, :tax_code, :file_sub_code, :inventory_product_flag, :launch_date
+      required_fields = [:item_code] #:item_code, :product_status, :product_name, :product_group, :tax_code, :file_sub_code, :inventory_product_flag, :launch_date
   		raise MissingRequestOptions if required_fields.any? { |option| attrs[option].nil? }  		
       super
       self.version = attrs[:version] ||= '2.00'
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'ItemCode', :value=>attrs[:item_code]})
-      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Keycode', :value=>attrs[:keycode]})
-      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Type', :value=>attrs[:type]})
+      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Keycode', :value=>attrs[:keycode]}) if attrs[:keycode]
+      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Type', :value=>attrs[:type]}) if attrs[:type]
       self.price_points = attrs[:price_points].collect { |h| PricePoint.new(h) }
     end
     
