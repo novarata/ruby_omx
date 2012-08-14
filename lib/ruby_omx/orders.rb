@@ -23,7 +23,7 @@ module RubyOmx
 		end
 
     def send_info_request(attrs={})
-	    @connection = RubyOmx::Connection.connect({ "http_biz_id" => @http_biz_id, "udi_auth_token" => @udi_auth_token, "server"=>ALT_HOST })
+	    @connection = RubyOmx::Connection.connect({ "http_biz_id" => @http_biz_id, "udi_auth_token" => @udi_auth_token, "server"=>ALT_HOST }) if attrs[:version].present? && attrs[:version]=='2.00'
 		  request = build_info_request(attrs)
       response = post(request.to_xml.to_s)
       return response if request.raw_xml==true || request.raw_xml==1
