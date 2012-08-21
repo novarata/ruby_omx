@@ -188,5 +188,30 @@ class ItemsTest < MiniTest::Unit::TestCase
     response = @connection.append_supplier_item(request_attrs)
     assert_equal '1', response.success
   end
+
+  def test_inventory_info_request_from_xml
+    request = RubyOmx::InventoryInfoRequest.format(xml_for('InventoryInformationRequest(1.00)',200))
+    assert_equal '1.00', request.version
+    assert_equal 2, request.items.length
+    item = request.items.first
+    assert_equal '10400', item.item_code
+  end
   
+  def test_inventory_info_request_to_xml    
+
+    request_attrs = {:items=>[{:item_code=>'10400'}, {:item_code=>'PARENT'}]}
+    request = @connection.build_inventory_info_request(request_attrs)
+    assert_instance_of String, request.to_xml.to_s
+    
+    @connection.stubs(:post).returns(xml_for('InventoryInformationResponse(1.00)',200))
+    response = @connection.fetch_inventory rescue MissingRequestOptions
+
+    response = @connection.fetch_inventory(request_attrs)
+    assert_equal '1', response.success
+    assert_equal 2, response.items.length
+    item = response.items.first
+    assert_equal '10400', item.item_code
+    assert_equal -438, item.available
+  end
+
 end

@@ -1,8 +1,6 @@
 module RubyOmx
 
-  class Item < Node
-    xml_name "Item"
-    xml_accessor :item_code, :from=>'@itemCode'
+  class SupplierItem < Item
     xml_accessor :supplier_id, :from=>'@supplierID'
     xml_accessor :supplier_item_code
     xml_accessor :description
@@ -20,11 +18,11 @@ module RubyOmx
   		raise MissingRequestOptions if attrs[:items].nil?
       super
       self.version = attrs[:version] ||= '1.00'
-      self.items = attrs[:items].collect { |h| Item.new(h) }
+      self.items = attrs[:items].collect { |h| SupplierItem.new(h) }
     end
         
     xml_name "SupplierItemUpdateRequest"
-    xml_accessor :items, :as=>[Item], :in=>'Items'
+    xml_accessor :items, :as=>[SupplierItem], :in=>'Items'
   end
 
 end

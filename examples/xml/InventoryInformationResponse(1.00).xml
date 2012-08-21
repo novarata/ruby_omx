@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InventoryInformationResponse>
+	<Items>
+		<Item itemCode="10400">
+			<Available>-438</Available>
+			<NextExpectedDeliveryDate/>
+		</Item>
+		<Item itemCode="PARENT">
+			<Available>0</Available>
+			<NextExpectedDeliveryDate/>
+			<Dimension name="Color">b</Dimension>
+			<Dimension name="Size">c</Dimension>
+		</Item>
+	</Items>
+	<Success>1</Success>
+</InventoryInformationResponse>

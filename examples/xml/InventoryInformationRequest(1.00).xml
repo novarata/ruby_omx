@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InventoryInformationRequest version="1.00">
+	<UDIParameter>
+		<Parameter key="HTTPBizID">yourid</Parameter>
+		<Parameter key="RealNonInventoryItemAvailability">True</Parameter>
+	</UDIParameter>
+	<Items>
+		<Item itemCode="10400"/>
+		<Item itemCode="PARENT">
+			<Dimension name="Color">b</Dimension>
+			<Dimension name="Size">c</Dimension>
+		</Item>
+	</Items>
+</InventoryInformationRequest>

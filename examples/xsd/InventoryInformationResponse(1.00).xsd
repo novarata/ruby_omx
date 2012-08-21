@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="InventoryInformationResponse">
+		<xs:annotation>
+			<xs:documentation>Inventory Information 1.00 Response</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:annotation>
+						<xs:documentation>If Success = 0 then error messages will be displayed, otherwise item information will be displayed.</xs:documentation>
+					</xs:annotation>
+					<xs:element name="Items">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Item">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Available" type="xs:int">
+												<xs:annotation>
+													<xs:documentation>The onhand - committed amount.  If negative then item is on backorder.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="NextExpectedDeliveryDate" type="xs:string">
+												<xs:annotation>
+													<xs:documentation>If a date is available it will be returned here in format m/d/yyyy, otherwise the vlue will be blank.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="Dimension" minOccurs="0" maxOccurs="unbounded">
+												<xs:annotation>
+													<xs:documentation>If a dimention was requested it will be returned here, otherwise it will not be included.</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:simpleContent>
+														<xs:extension base="xs:string">
+															<xs:attribute name="name" use="required"/>
+														</xs:extension>
+													</xs:simpleContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="itemCode"/>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Error" type="xs:string" maxOccurs="unbounded"/>
+				</xs:choice>
+				<xs:element name="Success">
+					<xs:annotation>
+						<xs:documentation>A value of 0 indicates an invalid request, 1 indicates a successful request.</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:enumeration value="0"/>
+							<xs:enumeration value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

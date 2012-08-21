@@ -37,6 +37,11 @@ module RubyOmx
     end
   end
 
+  class Item < Node
+    xml_name "Item"
+    xml_accessor :item_code, :from=>'@itemCode'
+  end    
+
   # LineItems appear in requests and responses
   class LineItem < Node
     xml_name "LineItem"
