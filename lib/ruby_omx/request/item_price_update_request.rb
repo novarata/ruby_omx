@@ -16,9 +16,10 @@ module RubyOmx
   		raise MissingRequestOptions if required_fields.any? { |option| attrs[option].nil? }  		
       super
       self.version = attrs[:version] ||= '1.00'
+      self.type = attrs[:keycode] ? 'Keycode' : 'DefaultPrice' # There are only 2 options, and if keycode is provided, it must be of type keycode, otherwise default
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'ItemCode', :value=>attrs[:item_code]})
+      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Type', :value=>self.type})
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Keycode', :value=>attrs[:keycode]}) if attrs[:keycode]
-      self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'Type', :value=>attrs[:type]}) if attrs[:type]
       self.price_points = attrs[:price_points].collect { |h| PricePoint.new(h) }
     end
     

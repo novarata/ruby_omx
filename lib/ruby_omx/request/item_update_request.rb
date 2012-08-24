@@ -6,6 +6,8 @@ module RubyOmx
     xml_accessor :incomplete_flag #<IncompleteFlag>True</IncompleteFlag>
 		xml_accessor :product_name #<ProductName>Deluxe Princess Fiona™ Child</ProductName>
 		xml_accessor :product_group, :as=>Integer #<ProductGroup>45</ProductGroup>
+    xml_accessor :weight, :as=>Float
+    xml_accessor :shipping_weight, :as=>Float
 		xml_accessor :cost_of_goods, :as=>Float #<CostOfGoods>10</CostOfGoods>
 		xml_accessor :upc_code, :from=>'UPCCode'	#<UPCCode></UPCCode>
 		xml_accessor :accounting_reference #<AccountingReference></AccountingReference>
