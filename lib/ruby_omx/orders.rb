@@ -1,6 +1,25 @@
 module RubyOmx
   module Orders
     
+    # Status mapping
+    FULFILL_STATUS = {
+      '0'=>'pending',
+      '2'=>'clearing',
+      '3'=>'backordered',
+      '5'=>'on hold',
+      '8'=>'held-to-complete',
+      '20'=>'backordered',
+      '28'=>'held-to-complete',
+      '30'=>'warehouse',
+      '40'=>'shipped',
+      '50'=>'returned',
+      '52'=>'pending returned',
+      '90'=>'cancelled', 
+      '95'=>'auto-cancelled',
+      '96'=>'voided shipment' 
+    }
+    BACKORDER_STATUS = [ '3', '20' ]
+    
     # Universal Direct Order Appending (UDOA)
     
     def build_udoa_request(attrs={})

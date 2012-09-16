@@ -187,30 +187,52 @@ class OrdersTest < MiniTest::Unit::TestCase
 		assert_equal 'OMX-ofyccytnacrtnedlldmyed', response.OMX
   end
   
-  def test_send_info_request1
+  def test_send_info_request_v1
   	@connection.stubs(:post).returns(xml_for('OrderInformationResponse(1.00)',200))
 		response = @connection.send_info_request({ :order_number => '16651', :version=>'1.00' })
 		assert_kind_of OrderInfoResponse, response
 
+    assert_equal 'ABCD-1234', response.order_id
     assert_equal DateTime.parse('2006-02-09 14:47:00'), response.ship_date
     assert_equal '11229', response.customer_number
     assert_equal "", response.tracking_number
     assert_equal '16651', response.order_number
     assert_equal DateTime.parse('2005-06-20 14:25:00'), response.order_date
+
+    # test line item detail
     assert_equal 1, response.line_items.length
     assert_equal '16651-1', response.line_items[0].shipment_number
     assert_equal 6.52, response.line_items[0].line_cogs
     assert_equal 6.52, response.line_items[0].unit_cogs
     assert_equal '01-113', response.line_items[0].supplier_item_code
     assert_equal '01-113', response.line_items[0].item_code
-    assert_instance_of OrderInfoLineStatus, response.line_items[0].line_status
+    assert_instance_of LineStatus, response.line_items[0].line_status
     assert_equal "OK", response.line_items[0].line_status.text
     assert_equal 40, response.line_items[0].line_status.value  
     assert_equal '2/9/2006 2:47:00 PM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
+				
+		assert_equal 'A123', response.keycode
+		assert_equal DateTime.parse('2005-06-20 14:25:00'), response.keyed_date
+
+    # Shipping Address
+		assert_equal 'Dun', response.ship_to.firstname
+		assert_equal "O'neil D", response.ship_to.lastname
+		assert_equal '1 main st, 2315', response.ship_to.address1
+		assert_equal 'Richmond Hill', response.ship_to.city
+		
+		# Billing Address
+		assert_equal 'Sun', response.bill_to.firstname
+		assert_equal "O'neil S", response.bill_to.lastname
+		assert_equal '1 main st, 2314', response.bill_to.address1
+		assert_equal 'Richmond Valley', response.bill_to.city
+
+		assert_equal 1, response.method_code
+		assert_equal 0, response.shipping_amount
+		assert_nil response.handling_amount
   end
 
-  def test_send_info_request2
+  def test_send_info_request_v2
   	@connection_alt.stubs(:post).returns(xml_for('OrderInformationResponse(2.00)',200))
 		response = @connection_alt.send_info_request({ :order_number => '24603' })
 		assert_kind_of OrderInfoResponse, response
@@ -218,7 +240,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_nil response.ship_date
     assert_equal "", response.tracking_number
 
-    assert_nil response.order_id    
+    assert_equal 'XYZ-123', response.order_id  
     assert_equal '24603', response.order_number
     assert_equal DateTime.parse('2003-04-01 22:15:00'), response.order_date
     assert_equal DateTime.parse('2010-05-31 05:36:00'), response.order_status_date
@@ -234,7 +256,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal 'APPLE', response.line_items[0].item_code
     assert_equal 'APPLE', response.line_items[0].supplier_item_code
     
-    assert_instance_of OrderInfoLineStatus, response.line_items[0].line_status
+    assert_instance_of LineStatus, response.line_items[0].line_status
     assert_equal "OK", response.line_items[0].line_status.text
     assert_equal 40, response.line_items[0].line_status.value  
     assert_equal '5/31/2010 5:36:00 AM', response.line_items[0].line_status.date

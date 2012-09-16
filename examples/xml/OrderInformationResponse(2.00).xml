@@ -13,7 +13,7 @@
 </PaymentSummary>
 <OrderHeader>
 <Division divisionID="29" website="who@where.com">JTest Div</Division>
-<OrderID/>
+<OrderID>XYZ-123</OrderID>
 <Tax>4.88</Tax>
 <NetAmount>74.50</NetAmount>
 <PrimaryPaymentType type="1">Credit Card</PrimaryPaymentType>

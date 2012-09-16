@@ -1,13 +1,5 @@
 module RubyOmx
-    
-  class Address < Node
-    xml_name "Address"
-    xml_accessor :address_type, :from => '@type'
-    xml_accessor :title_code, :company, :firstname, :lastname, :address1, :address2, :city, :state, :phone_number, :email
-    xml_accessor :zip, :from => 'ZIP'
-    xml_accessor :tld, :from => 'TLD'
-  end
-    
+        
   class CustomField < Node
     xml_name 'Field'
     xml_accessor :field_id, :from => '@fieldID'

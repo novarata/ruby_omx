@@ -2,42 +2,27 @@
 
 module RubyOmx
 
-  class OrderInfoLineStatus < Node
-    xml_name "LineStatus"
-    #<LineStatus date="2/9/2006 2:47:00 PM" text="OK">40</LineStatus>
-    xml_reader :text, :from => '@text'  # C/L means cancelled, OK with a date means processing
-    xml_reader :date, :from => "@date" # reverting to string as date is invalid, cancellation date if cancelled, processing date if processing
-    xml_reader :value, :from => :content, :as=>Integer
-  end
-  
-  class OrderInfoLineItem < Node
-    xml_name "LineItem"
-    xml_reader :item_code
-    xml_reader :product_name
-    xml_reader :quantity
-    xml_reader :price
-    xml_reader :line_status, :as=>OrderInfoLineStatus
-
-    xml_reader :warehouse_reference
-    xml_reader :tracking_number
-    
-    xml_reader :shipment_number
-    xml_reader :line_cogs, :from=>'LineCOGS', :as=>Float
-    xml_reader :unit_cogs, :from=>'UnitCOGS', :as=>Float
-    xml_reader :supplier_item_code
-  end
-
   class OrderInfoResponse < StandardResponse
     xml_name "OrderInformationResponse"
     
-    xml_reader :order_id, :in=>'OrderHeader'
+    xml_reader :order_id, :in=>'OrderHeader', :from=>'OrderID'
     xml_reader :order_number, :in=>'OrderHeader'
     xml_reader :order_status_code, :from => '@statusCode', :in=>'OrderHeader/OrderStatus'
     xml_reader :order_status_date, :as=>DateTime, :in=>'OrderHeader'
     xml_reader :order_date, :as=>DateTime, :in=>'OrderHeader'
+    xml_reader :keyed_date, :as=>DateTime, :in=>'OrderHeader'
+    xml_reader :total_amount, :as => Float, :in=>'OrderHeader'
+    xml_reader :keycode, :in=>'OrderHeader'
+
+    xml_reader :bill_to, :as => Address, :in => 'Customer'
+    xml_reader :ship_to, :as => Address, :in => 'ShippingInformation'
+
+    xml_reader :method_code, :in => 'ShippingInformation/Method', :from=>'@code', :as => Integer
+    xml_reader :shipping_amount, :in => 'ShippingInformation', :as => Float
+    xml_reader :handling_amount, :in => 'ShippingInformation', :as => Float
+
+    xml_reader :line_items, :as => [LineItem], :in => 'OrderDetail'    
     
-    #xml_reader :order_header, :as=>OrderInfoOrderHeader
-    xml_reader :line_items, :as => [OrderInfoLineItem], :in=>'OrderDetail'
     xml_reader :customer_number, :from=>'@number', :in=>'Customer'
     xml_reader :tracking_number, :in=>'ShippingInformation/Shipment'
     xml_reader :ship_date, :in=>'ShippingInformation/Shipment',:as=>DateTime # if populated, it means all items have shipped
@@ -49,6 +34,9 @@ module RubyOmx
 
 
 =begin
+
+
+
 
   OMX STATUS CODES
   

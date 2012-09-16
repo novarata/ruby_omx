@@ -42,23 +42,49 @@ module RubyOmx
     xml_accessor :item_code, :from=>'@itemCode'
   end    
 
+  class LineStatus < Node
+    xml_name "LineStatus"
+    #<LineStatus date="2/9/2006 2:47:00 PM" text="OK">40</LineStatus>
+    xml_reader :text, :from => '@text'  # C/L means cancelled, OK with a date means processing
+    xml_reader :date, :from => "@date" # reverting to string as date is invalid, cancellation date if cancelled, processing date if processing
+    xml_reader :value, :from => :content, :as=>Integer
+  end
+
   # LineItems appear in requests and responses
   class LineItem < Node
     xml_name "LineItem"
     xml_accessor :line_number, :from => '@lineNumber'
     xml_accessor :item_code
     xml_accessor :quantity, :as => Integer
-    xml_accessor :unit_price, :as => Float
-    xml_accessor :price, :as => Float
+    xml_accessor :unit_price
+    xml_accessor :price
     xml_accessor :update_standard_price  # default to 'False'
     xml_accessor :cancel_line
+
+    # read only attributes that come in the response
+    xml_reader :product_name
+    xml_reader :line_status, :as=>LineStatus
+    xml_reader :warehouse_reference
+    xml_reader :tracking_number
+    xml_reader :shipment_number
+    xml_reader :line_cogs, :from=>'LineCOGS', :as=>Float
+    xml_reader :unit_cogs, :from=>'UnitCOGS', :as=>Float
+    xml_reader :supplier_item_code
   end
-  
+    
   class CustomItemAttribute < Node
     xml_name "Attribute"
     xml_reader :attribute_id, :from => '@attributeID'
     xml_reader :name, :from => '@name'
     xml_reader :value, :from => :content
+  end
+
+  class Address < Node
+    xml_name "Address"
+    xml_accessor :address_type, :from => '@type'
+    xml_accessor :title_code, :company, :firstname, :lastname, :address1, :address2, :county, :city, :state, :phone_number, :email, :country
+    xml_accessor :zip, :from => 'ZIP'
+    xml_accessor :tld, :from => 'TLD'
   end
 
   class StandardResponse < Response
