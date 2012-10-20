@@ -47,7 +47,7 @@ module RubyOmx
     #<LineStatus date="2/9/2006 2:47:00 PM" text="OK">40</LineStatus>
     xml_reader :text, :from => '@text'  # C/L means cancelled, OK with a date means processing
     xml_reader :date, :from => "@date" # reverting to string as date is invalid, cancellation date if cancelled, processing date if processing
-    xml_reader :value, :from => :content, :as=>Integer
+    xml_reader :value, :from => :content
   end
 
   # LineItems appear in requests and responses

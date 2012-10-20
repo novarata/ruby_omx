@@ -208,7 +208,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal '01-113', response.line_items[0].item_code
     assert_instance_of LineStatus, response.line_items[0].line_status
     assert_equal "OK", response.line_items[0].line_status.text
-    assert_equal 40, response.line_items[0].line_status.value  
+    assert_equal '40', response.line_items[0].line_status.value  
     assert_equal '2/9/2006 2:47:00 PM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
 				
@@ -258,7 +258,7 @@ class OrdersTest < MiniTest::Unit::TestCase
     
     assert_instance_of LineStatus, response.line_items[0].line_status
     assert_equal "OK", response.line_items[0].line_status.text
-    assert_equal 40, response.line_items[0].line_status.value  
+    assert_equal '40', response.line_items[0].line_status.value  
     assert_equal '5/31/2010 5:36:00 AM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
 		
