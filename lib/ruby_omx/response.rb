@@ -92,7 +92,7 @@ module RubyOmx
 	  xml_reader :errors, :as=>[Error], :in=>'ErrorData'
 
     def to_s
-      error_string = self.errors.collect{ |e| e.message.to_s }.join(',')
+      error_string = self.errors ? self.errors.collect{ |e| e.message.to_s }.join(',') : "none"
       return "success: #{success}, errors: #{error_string}"
     end
   end
