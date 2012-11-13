@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReturnHistoryResponse>
+	<Order orderNumber="12992">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<ReturnDetail>
+			<Return returnID="1" type="Return">
+				<ReturnDate>2006-02-16 12:16:00</ReturnDate>
+				<ReturnAmount>3.00</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="3">
+						<ItemCode>1112</ItemCode>
+						<OrderedQuantity>4</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>3.00</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="BADE" type="Replacement">Exchange - Add Inv</ReturnReason>
+					</LineItem>
+				</LineDetail>
+			</Return>
+		</ReturnDetail>
+	</Order>
+	<Order orderNumber="18016">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<ReturnDetail>
+			<Return returnID="1" type="Return">
+				<ReturnDate>2006-02-15 14:35:00</ReturnDate>
+				<ReturnAmount>20.02</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="1">
+						<ItemCode>01-112</ItemCode>
+						<OrderedQuantity>1</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.00</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="BADD" type="Regular">Return - Broken during Delievery on the way</ReturnReason>
+					</LineItem>
+					<LineItem lineNumber="100">
+						<ItemCode>01-114</ItemCode>
+						<OrderedQuantity>1</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.02</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="ABCD1" type="Regular"/>
+					</LineItem>
+					<LineItem lineNumber="101">
+						<ItemCode>01-114</ItemCode>
+						<OrderedQuantity>10</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.02</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="ABCD5" type="Replacement">Exchange - Not Add Inv</ReturnReason>
+					</LineItem>
+				</LineDetail>
+			</Return>
+			<Return returnID="2" type="Return">
+				<ReturnDate>2006-02-15 14:41:00</ReturnDate>
+				<ReturnAmount>10.02</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="101">
+						<ItemCode>01-114</ItemCode>
+						<OrderedQuantity>10</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.02</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="ABC" type="Regular"/>
+					</LineItem>
+				</LineDetail>
+			</Return>
+			<Return returnID="3" type="Return">
+				<ReturnDate>2006-02-15 14:57:00</ReturnDate>
+				<ReturnAmount>10.02</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="101">
+						<ItemCode>01-114</ItemCode>
+						<OrderedQuantity>10</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.02</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="BADD" type="Regular">Return - Broken during Delievery on the way</ReturnReason>
+					</LineItem>
+				</LineDetail>
+			</Return>
+			<Return returnID="4" type="Return">
+				<ReturnDate>2006-02-15 15:02:00</ReturnDate>
+				<ReturnAmount>10.02</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="101">
+						<ItemCode>01-114</ItemCode>
+						<OrderedQuantity>10</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.02</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="BADQ" type="Regular">Return - Bad Quaulity</ReturnReason>
+					</LineItem>
+				</LineDetail>
+			</Return>
+			<Return returnID="5" type="Return">
+				<ReturnDate>2006-02-16 11:09:00</ReturnDate>
+				<ReturnAmount>10.02</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="101">
+						<ItemCode>01-114</ItemCode>
+						<OrderedQuantity>10</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>10.02</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="BADE" type="Replacement">Exchange - Add Inv</ReturnReason>
+					</LineItem>
+				</LineDetail>
+			</Return>
+		</ReturnDetail>
+	</Order>
+	<Order orderNumber="18043">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<ReturnDetail>
+			<Return returnID="1" type="Return">
+				<ReturnDate>2006-02-16 13:05:00</ReturnDate>
+				<ReturnAmount>0.00</ReturnAmount>
+				<ReturnTaxAmount>0.00</ReturnTaxAmount>
+				<LineDetail>
+					<LineItem lineNumber="1">
+						<ItemCode>10500</ItemCode>
+						<OrderedQuantity>10</OrderedQuantity>
+						<ReturnQuantity>1</ReturnQuantity>
+						<ReturnAmount>0.00</ReturnAmount>
+						<ReturnTaxAmount>0.00</ReturnTaxAmount>
+						<ReturnReason code="ABCD5" type="Replacement">Exchange - Not Add Inv</ReturnReason>
+					</LineItem>
+				</LineDetail>
+			</Return>
+		</ReturnDetail>
+	</Order>
+	<ErrorData/>
+</ReturnHistoryResponse>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="Parameter">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="key" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="HTTPBizID "/>
+								<xs:enumeration value="StartDate"/>
+								<xs:enumeration value="EndDate"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UDIParameter">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Parameter" minOccurs="3" maxOccurs="3"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReturnHistoryRequest">
+		<xs:annotation>
+			<xs:documentation>The Return History Request, version 1.00 
+allow for the export of high-level Return data by date range. 
+This UDI request will list individual Return events, but not contain any non-return-related detail, as the detail of each return can already be obtained with the 
+Return Information Request. 
+This new request is primarily to list the returns that have happened in the requested time period, and secondarily to include some detail of the returns, 
+so as to avoid the need for a detail Return Information Request call for basic integration purposes. 
+
+It is not necessary to submit an XML document containing the request, 
+as long as all the required parameters are included in the request 
+querystring as GET parameters:
+ - RequestType=ReturnHistoryRequest
+ - RequestVersion=1.00
+ - Wrapper=1
+ - HTTPBizID=[account HTTPBizID here]
+ - StartDate=[OMDate format date] - please note that a date/time value 
+       to the accuracy of 1 Minute should be used for this field, to 
+       ensure that no orders are accidentally missed or counted twice.
+ - EndDate=[OMDate format date] - please note that a date/time value 
+       to the accuracy of 1 Minute should be used for this field, to 
+       ensure that no orders are accidentally missed or counted twice.
+
+A sample request to the OrderMotion test drive account could be made 
+with the following URL:
+
+udi.asp?RequestType=ReturnHistoryRequest&amp;RequestVersion=1.00&amp;Wrapper=1&amp;HTTPBizID=TestHTTPBizID0123456789&amp;StartDate=2001-04-01+14:34:00&amp;EndDate=2002-05-10+14:33:59
+
+Please contact support@ordermotion.com for any additional information.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UDIParameter"/>
+			</xs:sequence>
+			<xs:attribute name="version" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

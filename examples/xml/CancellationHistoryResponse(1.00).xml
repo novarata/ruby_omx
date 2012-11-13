@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CancellationHistoryResponse>
+	<Order orderNumber="18602">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="4">
+				<CancellationDate>2005-08-04 10:46:00</CancellationDate>
+				<ItemCode>SUMTRACOFFEE</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">4.95</Price>
+				<Tax percent="8.75">0.43</Tax>
+				<TotalAmount>5.38</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19124">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="3">
+				<CancellationDate>2005-08-04 10:31:00</CancellationDate>
+				<ItemCode>KCD-003</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">79.96</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>79.96</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19596">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="2">
+				<CancellationDate>2005-08-03 02:06:00</CancellationDate>
+				<ItemCode>D10001</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">79.95</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>79.95</TotalAmount>
+				<SH>3.5</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19604">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="3">
+				<CancellationDate>2005-08-04 10:31:00</CancellationDate>
+				<ItemCode>KCD-003</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="8.25">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19625">
+		<Header>
+			<OrderID>TESTNO</OrderID>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="3">
+				<CancellationDate>2005-08-04 10:31:00</CancellationDate>
+				<ItemCode>KCD-003</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">79.96</Price>
+				<Tax percent="8.25">6.6</Tax>
+				<TotalAmount>86.56</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19626">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="3">
+				<CancellationDate>2005-08-04 10:31:00</CancellationDate>
+				<ItemCode>KCD-003</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">79.96</Price>
+				<Tax percent="8.25">6.6</Tax>
+				<TotalAmount>86.56</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19630">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-04 10:46:00</CancellationDate>
+				<ItemCode>COLLAR</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">40</Price>
+				<Tax percent="8.625">3.45</Tax>
+				<TotalAmount>43.45</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19643">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-02 18:22:00</CancellationDate>
+				<ItemCode>DIAMONDRING</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">40</Price>
+				<Tax percent="8.625">3.45</Tax>
+				<TotalAmount>43.45</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19661">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-04 10:46:00</CancellationDate>
+				<ItemCode>GIFTBASKET04</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">79.99</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>79.99</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="2">
+				<CancellationDate>2005-08-04 10:46:00</CancellationDate>
+				<ItemCode>BC796D</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="3">
+				<CancellationDate>2005-08-04 10:46:00</CancellationDate>
+				<ItemCode>BCTA</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19676">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-02 18:24:00</CancellationDate>
+				<ItemCode>DIAMONDRING</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">40</Price>
+				<Tax percent="8.4">3.36</Tax>
+				<TotalAmount>43.36</TotalAmount>
+				<SH>4.95</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19681">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="2">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>BCTA</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">188.95</Price>
+				<Tax percent="8.25">15.59</Tax>
+				<TotalAmount>204.54</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19702">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>COMPUTER-111</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="8.25">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="2">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>HD20</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="3">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>MONITOR15</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="4">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>RAM128</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="5">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTA</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="6">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTB</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="7">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTC</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="8">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTD</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="9">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTP</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="10">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTQ</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="11">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTR</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="12">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTS</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="13">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTJ</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="14">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTK</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+			<LineItem lineNumber="15">
+				<CancellationDate>2005-08-04 10:32:00</CancellationDate>
+				<ItemCode>PARTL</ItemCode>
+				<Quantity>1</Quantity>
+				<Price type="U">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19703">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-04 10:46:00</CancellationDate>
+				<ItemCode>BC296D</ItemCode>
+				<Quantity>2</Quantity>
+				<Price type="U">519.95</Price>
+				<Tax percent="8.25">85.79</Tax>
+				<TotalAmount>1125.69</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19738">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-02 17:26:00</CancellationDate>
+				<ItemCode>DOGFOOD</ItemCode>
+				<Quantity>10</Quantity>
+				<Price type="">0</Price>
+				<Tax percent="0">0</Tax>
+				<TotalAmount>0</TotalAmount>
+				<SH>4.95</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<Order orderNumber="19745">
+		<Header>
+			<OrderID/>
+			<StoreCode/>
+		</Header>
+		<OrderDetail>
+			<LineItem lineNumber="1">
+				<CancellationDate>2005-08-02 14:27:00</CancellationDate>
+				<ItemCode>10200B</ItemCode>
+				<Quantity>2</Quantity>
+				<Price type="U">50</Price>
+				<Tax percent="8.25">4.12</Tax>
+				<TotalAmount>54.12</TotalAmount>
+				<SH>0</SH>
+				<Info/>
+				<SHTax>0</SHTax>
+			</LineItem>
+		</OrderDetail>
+	</Order>
+	<ErrorData/>
+</CancellationHistoryResponse>

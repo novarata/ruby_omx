@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Erin Butler (CommercialWare, Inc.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="CancellationHistoryRequest">
+		<xs:annotation>
+			<xs:documentation>Cancellation History 1.00 Request
+
+This command enables you to view order cancellation history.
+
+The UDIParameters may optionally be passed in the URL instead of XML as
+
+udi.asp?key1=Parameter1&amp;key2=Parameter2
+
+Sample request:
+udi.asp?Wrapper=1&amp;RequestType=CancellationHistoryRequest&amp;RequestVersion=1.00&amp;HTTPBizID=yourid&amp;StartDate=1-1-2005&amp;EndDate=3-15-2005
+
+For additional help please consult the OrderMotion help area.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UDIParameter">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Parameter" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>There are three possible Parameter key value pairs:
+
+HTTPBizID - The OrderMotion account identifier provided to you.
+
+StartDate - Date range to begin search.
+
+EndDate - Date range to end search.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="key" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="HTTPBizID"/>
+												<xs:enumeration value="StartDate"/>
+												<xs:enumeration value="EndDate"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" use="required" fixed="1.00"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

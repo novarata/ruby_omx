@@ -21,7 +21,8 @@ module RubyOmx
     PENDING_STATUS = ['0','2']                  # item is pending an OMX data delivery
     BACKORDER_STATUS = [ '3', '20','5','8']     # item needs fulfillment attention
     SHIPPED_STATUS = ['30','40','50','52']      # item has or will soon ship (may come back)
-    CANCEL_STATUS = ['50','52','90','95','96']  # item has come back or been cancelled
+    RETURN_STATUS = ['50','52']
+    CANCEL_STATUS = ['90','95','96']  # item has come back or been cancelled
     
     # Universal Direct Order Appending (UDOA)
     
@@ -53,14 +54,23 @@ module RubyOmx
     end
 
 
-    # Smart Report Information
-    def send_smart_report_request(attrs={})
-      schedule_id = attrs[:schedule_id] ||= 1
-      response = get("https://omx.ordermotion.com/en/net/SmartReports.aspx?HTTPBizID=#{@http_biz_id}&ScheduleID=#{schedule_id}")
-      SmartReportResponse.format(response)
+		#CancellationHistoryRequest (CHR100)	This request type lists all the cancellations that have occurred between two dates.
+    def send_cancellation_history_request(attrs={})
+      request = CancellationHistoryRequest.new(attrs.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+      response = get(request.to_xml.to_s)
+      return response if request.raw_xml==true || request.raw_xml==1
+      CancellationHistoryResponse.format(response)
     end
-
+    
+    # ReturnHistoryRequest (RHR100)  This request returns a list of all the product returns that have happened within a target date/time range, with basic information about these returns.
+    def send_return_history_request(attrs={})
+      request = ReturnHistoryRequest.new(attrs.merge({:http_biz_id=>@http_biz_id, :udi_auth_token=>@udi_auth_token}))
+      response = get(request.to_xml.to_s)
+      return response if request.raw_xml==true || request.raw_xml==1
+      ReturnHistoryResponse.format(response)
+    end
   end
+
 end
 
 
@@ -87,13 +97,5 @@ end
   		# 18	USPS International Global Express	 	39.99	
   		# 19	Next Day Air (USA Only)	 	0.00	
   		# 20	2nd Day Air (USA Only)	 	0.00	
-  		# 21	Priority Mail (Free $74.99 and above), 3-6 days 0.00			
-    
-    #OrderDetailUpdateRequest (ODUR100)	This request type enables you to update certain data for orders.
-		#CancellationHistoryRequest (CHR100)	This request type lists all the cancellations that have occurred between two dates.
-		#InvoiceProcessRequest (IPR100)	This command takes an order number, and runs the invoicing and credit memo processes against the order if there are any order lines that can be subject to an invoice or credit memo, or if there are returns on the order.
-		#OrderCancellationRequest (OCR100)	This request type enables you to cancel some or all the line items in an order.		
-		#OrderSecondaryStatusUpdateRequest (OSSUR100)	This request type enables you to set the secondary status of the OrderLines.
-		#OrderUpdateRequest (OUR200)	This request type enables you to change the Payment Plan of an order, as well as the basis date for payment plan calculation, and also update the "Alt ID 2" (a.k.a "Reference") field of the order.
-		#OrderWaitDateUpdateRequest (OWDUR100)	This request type enables you to change the Wait Date of an existing order.  
+  		# 21	Priority Mail (Free $74.99 and above), 3-6 days 0.00    
 =end

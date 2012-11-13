@@ -96,5 +96,5 @@ module RubyOmx
       return "success: #{success}, errors: #{error_string}"
     end
   end
-  
+    
 end

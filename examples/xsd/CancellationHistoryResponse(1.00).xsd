@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Erin Butler (CommercialWare, Inc.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="CancellationHistoryResponse">
+		<xs:annotation>
+			<xs:documentation>Cancellation History 1.00 Response</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Order" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Header">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OrderID"/>
+										<xs:element name="StoreCode"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OrderDetail">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LineItem" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="CancellationDate"/>
+													<xs:element name="ItemCode"/>
+													<xs:element name="Quantity"/>
+													<xs:element name="Price">
+														<xs:complexType>
+															<xs:attribute name="type"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Tax">
+														<xs:complexType>
+															<xs:attribute name="percent"/>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TotalAmount"/>
+													<xs:element name="SH"/>
+													<xs:element name="Info"/>
+													<xs:element name="SHTax"/>
+												</xs:sequence>
+												<xs:attribute name="lineNumber"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="orderNumber"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ErrorData">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Error" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

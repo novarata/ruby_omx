@@ -261,20 +261,68 @@ class OrdersTest < MiniTest::Unit::TestCase
     assert_equal '40', response.line_items[0].line_status.value  
     assert_equal '5/31/2010 5:36:00 AM', response.line_items[0].line_status.date
 		assert_kind_of Hash, response.as_hash
+		assert_kind_of String, response.to_s
 		
 		response = @connection_alt.send_info_request({ :order_id=> 'AZ-43253-234', :store_code=>'XX01' })
 		assert_kind_of OrderInfoResponse, response
   end
   
-  def test_send_smart_report_request
-  	@connection.stubs(:get).returns(xml_for('SmartReports',200))
-		response = @connection.send_smart_report_request
-		assert_kind_of SmartReportResponse, response
-		assert_equal 2, response.rows.length
-		assert_equal 12, response.rows[0].fields.length
-		assert_equal '1', response.rows[0].fields[0].id
-		assert_equal '12432343', response.rows[0].fields[0].value
-		assert_kind_of Hash, response.as_hash
+  def test_cancellation_history_request
+  	@connection.stubs(:get).returns(xml_for('CancellationHistoryResponse(1.00)',200))
+		response = @connection.send_cancellation_history_request({:start_date=>Time.now, :end_date=>Time.now})
+		assert_kind_of CancellationHistoryResponse, response
+
+    assert_equal 15, response.orders.count
+    o = response.orders[8]
+    assert_equal "19661", o.order_number
+    assert_equal 3, o.line_items.count
+    li = o.line_items.first
+    assert_equal '1', li.line_number
+    assert_equal DateTime.parse('2005-08-04 10:46:00'), li.cancellation_date
+    assert_equal "GIFTBASKET04", li.item_code
+    assert_equal 1, li.quantity
+    assert_equal 79.99, li.price
+    assert_equal 0, li.tax
+    assert_equal 79.99, li.total_amount
+    assert_equal 0, li.sh
+    assert_equal 0, li.sh_tax
+
+		assert_kind_of Hash, response.as_hash		
   end
   
+  def test_return_history_request
+    @connection.stubs(:get).returns(xml_for('ReturnHistoryResponse(1.00)',200))
+		response = @connection.send_return_history_request({:start_date=>Time.now, :end_date=>Time.now})
+		assert_kind_of ReturnHistoryResponse, response
+
+    assert_equal 3, response.orders.count
+    o = response.orders[1]
+
+    assert_equal "18016", o.order_number
+    assert_equal 5, o.returns.count
+
+    r = o.returns.first
+    assert_equal '1', r.return_id
+    assert_equal 'Return', r.return_type
+    assert_equal DateTime.parse('2006-02-15 14:35:00'), r.return_date
+    assert_equal 20.02, r.return_amount
+    assert_equal 0, r.return_tax_amount
+    assert_equal 3, r.line_items.count
+    
+    li = r.line_items.first
+    assert_equal '1', li.line_number
+    assert_equal '01-112', li.item_code
+    assert_equal 1, li.ordered_quantity
+    assert_equal 1, li.return_quantity
+    assert_equal 10.00, li.return_amount
+    assert_equal 0, li.return_tax_amount
+    assert_equal "Return - Broken during Delievery on the way", li.return_reason
+
+    # Not implemented
+    #assert_equal "BADD", li.return_reason_code
+    #assert_equal "Regular", li.return_reason_type
+  
+		assert_kind_of Hash, response.as_hash
+  end
+    
 end

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:simpleType name="OMDate">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">
+        Dates are almost the same as the W3C Schema "date" type, but with a space
+        instead of the "T" separating the date from the time.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="(\d\d\d\d-\d\d-\d\d( \d\d:\d\d(:\d\d(\.\d\d\d)?)?)?)?"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="OMItemCode">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">
+        Item codes can be up to 15 characters long, composed of letters, digits,
+        periods and hyphens
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[A-Za-z0-9\.\-!$+/:@\\\^\-{}~]{1,50}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="OMErrorData">
+    <xsd:sequence>
+      <xsd:element name="Error" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+            Errors are plain english, each error in its own element.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ReturnHistoryResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="Success" type="xsd:boolean"/>
+        <xsd:choice>
+          <xsd:element name="Order" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">
+                For a valid date range, any orders with returns within the given time period
+                will be listed here.
+              </xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Header">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">
+                      General information pertaining to the order is defined here.
+                    </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                    <xsd:sequence>
+                      <xsd:element name="OrderID" type="xsd:string">
+                        <xsd:annotation>
+                          <xsd:documentation xml:lang="en">
+                            This is the order identifier submitted by the 3rd-party order
+                            submission system (eg Shopping cart) or the customer's PO
+                            number for this order. OrderID is usually used with shopping
+                            carts to prevent the duplicate submission of orders. For this
+                            purpose a "StoreCode", uniquely identifying the website or system
+                            suppying the Order IDs, must also be specified (next element).
+                          </xsd:documentation>
+                        </xsd:annotation>
+                      </xsd:element>
+                      <xsd:element name="StoreCode" type="xsd:string">
+                        <xsd:annotation>
+                          <xsd:documentation xml:lang="en">
+                            This element is used in conjunction with the "OrderID" field to
+                            uniquely identify individual orders submitted by different third
+                            parties to the same OrderMotion account.
+                          </xsd:documentation>
+                        </xsd:annotation>
+                      </xsd:element>
+                    </xsd:sequence>
+                  </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="ReturnDetail">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">
+                      The returns are defined in this section.
+                    </xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexType>
+                    <xsd:sequence>
+                      <xsd:element name="Return">
+                        <xsd:complexType>
+                          <xsd:sequence>
+                            <xsd:element name="ReturnDate" type="OMDate"/>
+                            <xsd:element name="ReturnAmount" type="xsd:decimal"/>
+                            <xsd:element name="ReturnTaxAmount" type="xsd:decimal"/>
+                            <xsd:element name="LineDetail" minOccurs="1" maxOccurs="1">
+                              <xsd:complexType>
+                                <xsd:sequence>
+                                  <xsd:element name="LineItem" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:complexType>
+                                      <xsd:sequence>
+                                        <xsd:element name="ItemCode" type="OMItemCode">
+                                          <xsd:annotation>
+                                            <xsd:documentation xml:lang="en">
+                                              This is the item code defined by the merchant to identify this
+                                              item. Please see the "OMItemCode" type definition for expected
+                                              format.
+                                            </xsd:documentation>
+                                          </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="OrderedQuantity" type="xsd:integer">
+                                          <xsd:annotation>
+                                            <xsd:documentation xml:lang="en">
+                                              The quantity ordered for this line.
+                                            </xsd:documentation>
+                                          </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="ReturnQuantity" type="xsd:integer">
+                                          <xsd:annotation>
+                                            <xsd:documentation xml:lang="en">
+                                              The quantity Returned.
+                                            </xsd:documentation>
+                                          </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="ReturnAmount" type="xsd:decimal">
+                                          <xsd:annotation>
+                                            <xsd:documentation xml:lang="en">
+                                              The Return Amount
+                                            </xsd:documentation>
+                                          </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="ReturnTaxAmount" type="xsd:decimal">
+                                          <xsd:annotation>
+                                            <xsd:documentation xml:lang="en">
+                                              The Return Tax Amount.
+                                            </xsd:documentation>
+                                          </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="ReturnReason">
+                                          <xsd:complexType mixed="true">
+                                            <xsd:attribute name="code" type="xsd:string" use="required"/>
+                                            <xsd:attribute name="type" type="xsd:string" use="required"/>
+                                          </xsd:complexType>
+                                        </xsd:element>
+                                      </xsd:sequence>
+                                      <xsd:attribute name="lineNumber" type="xsd:positiveInteger" use="required">
+                                        <xsd:annotation>
+                                          <xsd:documentation xml:lang="en">
+                                            This in the unique line number for this orderline, in this order,
+                                            in this OrderMotion account.
+                                          </xsd:documentation>
+                                        </xsd:annotation>
+                                      </xsd:attribute>
+                                    </xsd:complexType>
+                                  </xsd:element>
+                                </xsd:sequence>
+                              </xsd:complexType>
+                            </xsd:element>
+                          </xsd:sequence>
+                          <xsd:attribute name="returnID" type="xsd:positiveInteger" use="required"/>
+                          <xsd:attribute name="type" type="xsd:string" use="required"/>
+                        </xsd:complexType>
+                      </xsd:element>
+                    </xsd:sequence>
+                  </xsd:complexType>
+                </xsd:element>
+              </xsd:sequence>
+              <xsd:attribute name="orderNumber" type="xsd:positiveInteger" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="ErrorData" type="OMErrorData" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">
+                Any errors are returned here. If there are errors, no "Order" elements will
+                be included in the response.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

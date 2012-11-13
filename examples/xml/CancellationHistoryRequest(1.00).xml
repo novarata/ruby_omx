@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<CancellationHistoryRequest version="1.00">
+	<UDIParameter>
+		<Parameter key="HTTPBizID">yourid</Parameter>
+		<Parameter key="StartDate">8/1/2005</Parameter>
+		<Parameter key="EndDate">8/5/2005</Parameter>
+	</UDIParameter>
+</CancellationHistoryRequest>
