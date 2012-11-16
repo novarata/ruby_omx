@@ -18,11 +18,12 @@ module RubyOmx
       '95'=>'auto-cancelled',
       '96'=>'voided shipment' 
     }
-    PENDING_STATUS = ['0','2']                  # item is pending an OMX data delivery
-    BACKORDER_STATUS = [ '3', '20','5','8']     # item needs fulfillment attention
-    SHIPPED_STATUS = ['30','40','50','52']      # item has or will soon ship (may come back)
-    RETURN_STATUS = ['50','52']
-    CANCEL_STATUS = ['90','95','96']  # item has come back or been cancelled
+    PENDING_STATUS = ['0','2','28','30','52']   # actual status is pending an OMX data delivery
+    BACKORDER_STATUS = [ '3', '20','5','8']     # needs fulfillment attention
+    SHIPPED_STATUS = ['40']                     # has or will soon ship (may come back)
+    RETURN_STATUS = ['50']                      # has been returned
+    CANCEL_STATUS = ['90','95','96']            # has been cancelled
+    
     
     # Universal Direct Order Appending (UDOA)
     
