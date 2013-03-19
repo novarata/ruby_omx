@@ -1,9 +1,7 @@
 # encoding: utf-8
-if RUBY_VERSION.match("1.9")
-  require 'simplecov'
-  SimpleCov.start do
-    add_filter 'test'
-  end
+require 'simplecov'
+SimpleCov.start do
+  add_filter 'test'
 end
 
 require 'minitest/autorun'
