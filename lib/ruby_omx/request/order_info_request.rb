@@ -15,7 +15,7 @@ module RubyOmx
       self.udi_parameters << RubyOmx::UDIParameter.new({:key=>'level', :value=>attrs[:level] ||=2 })
     end
     
-    attr_accessor :order_number, :order_id, :store_code
+    attr_accessor :order_number, :order_id, :store_code, :keycode, :order_date, :queue_flag,:verify_flag, :bill_to, :method_code, :shipping_amount, :gift_wrapping, :line_items, :total_amount,:gift_message, :vendor, :raw_xml
     
     xml_name "OrderInformationRequest"
   end
